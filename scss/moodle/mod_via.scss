@@ -1,0 +1,15 @@
+#page-mod-via-view {
+  #page-content {
+    main[role="main"] {
+      h2:first-child {
+        display: none;
+      }
+
+      div.intro {
+        div.no-overflow:first-child {
+          display: none;
+        }
+      }
+    }
+  }
+}

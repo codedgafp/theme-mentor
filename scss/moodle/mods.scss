@@ -1,0 +1,9 @@
+body[id^="page-mod-"] {
+  form.mform {
+    #id_competenciessection {
+      & + div.form-group.row.fitem {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+#page-mod-bigbluebuttonbn-view {
+  #page-content {
+    main[role="main"] {
+      & > h3 {
+        display: none;
+      }
+
+      & > h5 {
+        display: none;
+      }
+    }
+  }
+}
