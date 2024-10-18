@@ -67,8 +67,7 @@
                         <div class="d-sm-flex align-items-center">
                             <div class="mr-auto">
                                 <div class="page-context-header">
-                                    <div class="page-header-headings"><h1>{{#str}}
-                                        dashboard, theme_mentor {{/str}}</h1></div>
+                                    <div class="page-header-headings"></div>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +99,11 @@
                 </section>
                 {{#hasblocks}}
                     <section data-region="blocks-column" class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+                          <div class="mentor-search">
+                            <input type="text" name="search-mentor-input" id="search-mentor-input" title="{{# str}}search_placeholder, local_mentor_specialization{{/str}}"
+                                placeholder="{{# str}}search_placeholder, local_mentor_specialization{{/str}}">
+                            <button id="search-mentor-button" class="btn btn-primary" aria-label="Rechercher une formation"><i class="icon fa fa-search"></i></button>
+                        </div>
                         {{{ sidepreblocks }}}
                     </section>
                 {{/hasblocks}}

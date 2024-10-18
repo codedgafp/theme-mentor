@@ -47,10 +47,10 @@ $string['forgotpassword'] = 'Mot de passe oublié ?';
 $string['rememberme'] = 'Se souvenir de moi';
 $string['signup'] = 'Créer mon compte';
 $string['contact'] = 'Contact';
-$string['dashboard'] = 'Tableau de bord';
+$string['dashboard'] = 'Mes formations';
 $string['prevstep'] = 'Étape précédente';
 $string['prevstepcatalog'] = 'Retour à l\'offre de formation';
-$string['prevstepdashboard'] = 'Retour au tableau de bord';
+$string['prevstepdashboard'] = 'Retour à mes formations';
 $string['exittomod'] = 'Sortir de l\'activité';
 
 // Mentor theme.
@@ -176,3 +176,7 @@ $string['totop'] = 'Go to top';
 $string['administrationsite'] = 'Administration';
 
 $string['profile'] = 'Profil';
+
+$string['notification_button'] = 'S\'abonner aux nouveautés';
+$string['subscription_management'] = 'Gestion des abonnements';
+$string['tout_activer'] = 'Tout activer';

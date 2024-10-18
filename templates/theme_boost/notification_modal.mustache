@@ -1,0 +1,36 @@
+<div id='notification_modal' aria-labelledby="notification-modal" aria-describedby="modal-notification" style="display:none;overflow:hidden" class="fr-modal">
+    <p class="notification_modal_text">{{notificationDataText}}</p>
+    <div class="table-container">
+      <table class="table table-striped table-hover collections_table scroll">
+        <thead>
+        <tr>
+          <th class='table-active'>
+          {{notificationDataTitle}}
+          </th>
+            <th class='table-active'>
+                <div class="fr-toggle fr-toggle--border-bottom">
+                    <input type="checkbox" class="fr-toggle__input" aria-describedby="check_all-hint-text toggle-hint-0-messages" id="check_all" aria-labelledby="check_all">
+                    <label class="fr-toggle__label" for="check_all" data-fr-checked-label="{{# str }}tout_activer, theme_mentor{{/str}}" data-fr-unchecked-label="{{# str }}tout_activer, theme_mentor{{/str}}"></label>
+                    <div class="fr-messages-group" id="check_all-messages" aria-live="polite">
+                    </div>
+                </div>
+            
+            </th>
+       </tr>
+      </thead>
+        <tbody id="collectionsList">
+
+        </tbody>
+      </table>
+    </div>
+</div> 
+<div id="madal_params" style="display: none">
+  <input id="controller_get" value="{{notificationControllerGetData}}"> 
+  <input id="function_get" value="{{notificationFunctionGetData}}">
+  <input id="controller_get_preferences" value="{{notificationControllerGetUserPreferences}}"> 
+  <input id="function_get_preferences" value="{{notificationFunctionGetUserPreferences}}">
+  <input id="controller_send" value="{{notificationControllerSendData}}">
+  <input id="function_send" value="{{notificationFunctionSendData}}">
+  <input id="type" value="{{notificationTypeSendData}}">
+  <input id="ajax_file_path" value="{{notificationAjaxFilePath}}">  
+</div>

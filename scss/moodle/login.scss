@@ -53,6 +53,11 @@
         height: 100%;
         padding-bottom: 0;
         overflow: hidden;
+        padding: 0px 1.25rem 0rem 1.25rem;
+
+        @media(max-width: 640px) {
+          padding: 0 10px 0px 10px;
+        }
 
         @media(max-width: 1400px) {
           padding-right: 0;
@@ -108,7 +113,6 @@
           #login-content {
             justify-content: center;
             max-width: 1200px;
-            margin-top: 72px;
             color: $maintitlecolor;
             display: flex;
             flex-direction: row;
@@ -134,7 +138,7 @@
             }
 
             .login-left {
-              padding: 42px 70px 70px 0;
+              padding: 150px 70px 70px 0;
               display: flex;
               flex: 0 0 64%;
               max-width: 64%;
@@ -142,7 +146,7 @@
               justify-content: center;
 
               @media(max-width: 1300px) {
-                padding: 42px 0 70px 0;
+                padding: 150px 0 70px 0;
                 flex: 0 0 55%;
               }
 
@@ -496,7 +500,6 @@
 #page-theme-mentor-pages-verify_email,
 #page-theme-mentor-pages-signup {
   #page {
-    margin-top: $nologinheaderheight;
     background-image: unset;
     background-color: $bgcolor;
 
@@ -657,7 +660,6 @@
   #page {
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-top: $nologinheaderheight;
     background-color: #f6f8fc;
     background-image: unset;
 

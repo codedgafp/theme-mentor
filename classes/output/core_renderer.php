@@ -650,7 +650,11 @@ class theme_mentor_core_renderer extends core_renderer
         // This is an unfortunate hack. DO NO EVER add anything more here.
         // DO NOT add classes.
         // DO NOT add an id.
-        $main_content = '<main role="main">'.$this->unique_main_content_token.'</main>';
+
+        $url = $this->page->url;
+        $balise = strpos($url, '/my/') ? "div" : "main";
+
+        $main_content = "<$balise role='main'>" . $this->unique_main_content_token . "</$balise>";
         return $main_content;
     }
 }

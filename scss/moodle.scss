@@ -14,6 +14,7 @@
 @import "moodle/my";
 @import "moodle/atto_templates";
 @import "moodle/login";
+@import "moodle/search";
 @import "moodle/signup";
 @import "moodle/admin";
 @import "moodle/activities";
@@ -51,3 +52,4 @@
 // Other
 @import "moodle/contentbank";
 @import "moodle/popover-region";
+@import "moodle/notification";

@@ -182,4 +182,8 @@
     Drawer.init();
     M.util.js_complete('theme_boost/loader');
     });
+
+    require(['theme_mentor/common'], function(common) {
+    common.wrapeAsideTagInNavTag();
+    });
 {{/js}}

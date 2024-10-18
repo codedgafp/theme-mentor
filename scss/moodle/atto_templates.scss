@@ -36,6 +36,9 @@
   }
 }
 
+* > i {
+  vertical-align: middle;
+}
 
 .mentor-card {
 
@@ -54,10 +57,6 @@
   &.plus-loin {
     .mentor-card-left {
       background-color: $plusloinbackgroudcolor;
-    }
-    .mentor-card-content .unlist .mentor-link-icon{
-      display: flex;
-      align-items: center;
     }
 
   }
@@ -180,14 +179,14 @@
   padding-inline-start: 0;
 
   // Cache les elements vides generes par atto.
-  & + br,
-  & ~ p[dir="ltr"]:empty {
+  &+br,
+  &~p[dir="ltr"]:empty {
     display: none;
   }
 
   // Cache la bordure superieure des accordeons qui suivent cet element pour eviter la superposition.
-  & + br + .mentor-accordion,
-  & + br + p[dir="ltr"]:empty + .mentor-accordion {
+  &+br+.mentor-accordion,
+  &+br+p[dir="ltr"]:empty+.mentor-accordion {
     .card-header {
       border-top: 0;
     }
@@ -197,7 +196,7 @@
     margin: 0;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .125);
-    
+
     &:first-child {
       border-top: 1px solid rgba(0, 0, 0, .125);
     }
@@ -240,6 +239,7 @@
       }
 
       h5 {
+        font-weight: 500;
         font-size: 16px;
         text-align: left;
         color: $element;
@@ -269,14 +269,20 @@
 
         .collapse-chevron {
           color: $element;
+          font-weight: 500;
         }
-      } 
+      }
+
+      p.header-right {
+        margin: 0;
+      }
 
       .collapse-chevron {
         display: block;
       }
 
-      .remove-collapse, .add-collapse {
+      .remove-collapse,
+      .add-collapse {
         display: none;
       }
 
@@ -334,17 +340,19 @@
     }
 
     .collapse-chevron {
-      display: none!important;
+      display: none !important;
     }
 
-    .remove-collapse, .add-collapse {
-      display: block!important;
+    .remove-collapse,
+    .add-collapse {
+      display: block !important;
     }
 
   }
 }
 
-.mentor-h2 { // MEN-176: class removed. We keep css rule to not break old title snippet generated with this class.
+.mentor-h2 {
+  // MEN-176: class removed. We keep css rule to not break old title snippet generated with this class.
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -366,7 +374,8 @@
 
 }
 
-.mentor-h3 { // MEN-176: class removed. We keep css rule to not break old title snippet generated with this class.
+.mentor-h3 {
+  // MEN-176: class removed. We keep css rule to not break old title snippet generated with this class.
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -392,7 +401,8 @@
 
 }
 
-.add-card, .remove-card {
+.add-card,
+.remove-card {
   display: none;
 }
 
@@ -406,7 +416,7 @@
     margin-bottom: 3rem;
   }
 
-  .card-body > a:last-child {
+  .card-body>a:last-child {
     color: $white !important;
     background: $maincolor !important;
     padding: 7px 16px 9px 15px !important;
@@ -450,14 +460,17 @@
   }
 }
 
-.class-virtuelle, .presentiel {
+.class-virtuelle,
+.presentiel {
   .mentor-card-left {
     background-color: #0562C8;
   }
 
 }
 
-.class-virtuelle, .presentiel, .presentation-formation {
+.class-virtuelle,
+.presentiel,
+.presentation-formation {
   .mentor-card-content {
     .date {
       color: #0562C8;

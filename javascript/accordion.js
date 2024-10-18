@@ -1,16 +1,19 @@
 // Collapse event
 $(document).ready(function () {
+    const chevronDown = '<i class="collapse-chevron fa fa-chevron-down" aria-hidden="true"></i>'
+    const chevronUp = '<i class="collapse-chevron fa fa-chevron-up" aria-hidden="true"></i>'
     // Set aria-expanded to all card-header on the page.
     $('.card-header').each(function () {
         if ($(this).hasClass('opened')) {
             $(this).attr('aria-expanded', "true");
+            $('.header-right', this).html(chevronUp);
         } else {
             $(this).attr('aria-expanded', "false");
+            $('.header-right', this).html(chevronDown);
         }
     });
 
-    const chevronDown = '<i class="collapse-chevron fa fa-chevron-down" aria-hidden="true"></i>'
-    const chevronUp = '<i class="collapse-chevron fa fa-chevron-up" aria-hidden="true"></i>'
+    
 
     // Set collapse position with set browser mobile size.
     $('body .mentor-accordion .card-header').each(function (index, element) {

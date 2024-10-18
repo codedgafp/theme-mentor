@@ -96,6 +96,7 @@ $THEME->javascripts_footer = [
     'csp',
     'usertours',
     'header',
+    'search'
 ];
 
 $THEME->haseditswitch = true;
