@@ -7,17 +7,57 @@
 
     @media(max-width: $size-mobile) {
       padding-top: 10px;
+      margin-left: 0;
+      margin-right: 0;
     }
 
     @media(max-width: $size-md) {
       background-size: auto 45px;
       background-position: left 15px top 10px;
       padding-bottom: 10px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    @media(max-width: $size-sm) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  #page-content {
+
+    @media(max-width: $size-mobile) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @media(max-width: $size-md) {
+
+        margin-left: 0;
+        margin-right: 0;
+    }
+    @media(max-width: $size-sm) {
+        margin-left: 0;
+        margin-right: 0;
     }
   }
 
   #region-main {
     box-shadow: none;
+    @media(max-width: $size-mobile) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @media(max-width: $size-md) {
+
+        margin-left: 0;
+        margin-right: 0;
+    }
+    @media(max-width: $size-sm) {
+        //margin-left: 0.9375rem;
+       
+    }
   }
 
   .modal-dialog {
@@ -28,4 +68,10 @@
     top: -40px;
   }
 
+}
+// Fix the useless x scrolling bar for Iphone display.
+#region-main {
+  @media (max-width: $size-sm) {
+    overflow-x: hidden !important;
+  }
 }
