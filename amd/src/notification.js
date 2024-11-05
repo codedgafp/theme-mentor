@@ -198,7 +198,24 @@ define([
                         });
                         $(".ui-dialog-title").append('<img src="'+M.cfg.wwwroot+'/theme/mentor/pix/vector.svg" class="icon notification_icon"  />');
                         $('.ui-dialog-titlebar-close').attr('aria-label','Fermer');
-                        that.setUserPreferences();
+                        var disableModal = document.getElementById('notification_modal').getAttribute('data-disable_modal');
+                        if(disableModal == 1)
+                        {
+                         document.getElementById('check_all').checked = true ;
+                         document.getElementById('check_all').disabled = true;
+                         $('.toggle_collections').each(function() {
+                             this.checked = true;
+                             this.disabled = true;                        
+                         });
+                        }else{
+                            document.getElementById('check_all').disabled = false;
+                            $('.toggle_collections').each(function() {
+                                this.disabled = false;                        
+                            });
+                              that.setUserPreferences();
+                        }
+         
+                      
                     return;          
 
             });
