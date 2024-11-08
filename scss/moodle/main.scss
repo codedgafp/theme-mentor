@@ -280,9 +280,6 @@ input[type="radio"] {
   background-color: $bgcolor;
   margin-top: 0;
 
-  @media(max-width: $size-mobile) {
-    margin-top: $headermobileheight;
-  }
 
   .breadcrumb-item {
     color: #1e1e1e;
@@ -309,9 +306,6 @@ input[type="radio"] {
     padding-left: 0;
     padding-right: 0;
 
-    @media(max-width: $size-mobile) {
-      margin-top: $headermobileheight;
-    }
 
     #region-main {
       margin-left: 12px;

@@ -92,10 +92,6 @@
       margin-right: 16px;
     }
 
-    @media(max-width: $size-mobile) {
-      display: none;
-    }
-
     .logo {
       max-height: initial !important;
       img {
@@ -103,6 +99,10 @@
         max-height: 81px !important;
         width: 90px;
         height: 81px;
+      }
+
+      @media(max-width: $size-mobile) {
+        display: none;
       }
     }
 
@@ -118,6 +118,12 @@
         line-height: 1.4;
         letter-spacing: normal;
         color: #383838;
+
+        @media(max-width: 576px) {
+          display: flex;
+          flex-direction: column;
+          padding-left: 20px;
+        }
       }
       .sub-title{
         font-size: 16px;
@@ -482,10 +488,6 @@
   &.fixed-top {
     height: auto;
     position: relative;
-
-    @media (max-width: $size-mobile) {
-      height: $headermobileheight;
-    }
 
     @media (max-width: 640px) {
       flex-wrap: wrap !important;
