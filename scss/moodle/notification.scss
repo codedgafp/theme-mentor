@@ -19,6 +19,7 @@
     /* head takes the height it requires, 
     and it's not scaled when table is resized */
     flex: 0 0 auto;
+    width: 100%;
     //width: calc(100% - 0.9em);
 }
 .collections_table>table tbody {
@@ -587,4 +588,11 @@
     outline-offset: 2px;
     outline-style: solid;
     outline-width: 2px
+}
+
+.notification_icon {
+    width: 2rem;
+    height: 1.2rem;
+    padding-right: -26px;
+    margin-right: -0.5rem;
 }

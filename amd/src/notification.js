@@ -157,7 +157,7 @@ define([
                                     <td>${record.fullname}</td>
                                     <td>
                                         <div class="fr-toggle fr-toggle--border-bottom">
-                                            <input value ="${record.id}" type="checkbox" class="fr-toggle__input toggle_collections" aria-describedby="collection-1-hint-text toggle-hint-0-messages" id="collection-${record.id}" aria-labelledby="activate_desactivate">
+                                            <input value ="${record.id}" type="checkbox" class="fr-toggle__input toggle_collections" aria-describedby="collection-1-hint-text toggle-hint-0-messages" id="collection-${record.id}" aria-label="${record.fullname}">
                                             <label class="fr-toggle__label" for="collection-${record.id}" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"></label>
                                             <div class="fr-messages-group" id="-messages-${record.id}" aria-live="polite">
                                             </div>
@@ -196,7 +196,7 @@ define([
                             },
                                
                         });
-                        $(".ui-dialog-title").append("<i class='fa fa-bell' style='color: #000091;margin-left: 10px;'></i>");
+                        $(".ui-dialog-title").append('<img src="'+M.cfg.wwwroot+'/theme/mentor/pix/vector.svg" class="icon notification_icon"  />');
                         $('.ui-dialog-titlebar-close').attr('aria-label','Fermer');
                         that.setUserPreferences();
                     return;          
