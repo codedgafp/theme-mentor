@@ -239,6 +239,8 @@ body[class*="course-"] {
   }
 
   .section-navigation {
+    width: 100%;
+
     &.mdl-bottom {
       background-color: rgba(7, 98, 200, 0.06);
       overflow: auto;
@@ -255,9 +257,25 @@ body[class*="course-"] {
       .mdl-right {
         display: none;
       }
-
     }
 
+    div.prevsection {
+      width: 45%;
+      text-align: left;
+
+      span.larrow {
+        margin-right: 0.5rem;
+      }
+    }
+
+    div.nextsection {
+      width: 45%;
+      text-align: right;
+
+      span.rarrow {
+        margin-left: 0.5rem;
+      }
+    }
   }
 
   table {
