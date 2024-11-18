@@ -79,8 +79,7 @@
   h3 {
     font-size: 24px;
     line-height: 1;
-    margin: 22px 151px 26px 14px;
-    color: $maintitlecolor;
+    margin: 22px 151px 26px 0px;
 
     @media(max-width: $size-sm) {
       width: 100%;
@@ -125,7 +124,7 @@
       }
 
       .qn-content {
-        margin-left: 30px;
+        margin-left: 13px;
 
         .editor_atto_content_wrap {
           border: 1px solid #bbb;
@@ -184,7 +183,6 @@
 
         .qn-question {
           font-size: 16px;
-          font-weight: bold;
           line-height: 1.5;
           color: #1e1e1e;
           background-color: $white;
