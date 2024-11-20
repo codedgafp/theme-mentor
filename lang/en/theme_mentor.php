@@ -177,6 +177,7 @@ $string['administrationsite'] = 'Administration';
 
 $string['profile'] = 'Profil';
 
-$string['notification_button'] = 'S\'abonner aux nouveautés';
+$string['notification_catalog'] = 'S\'abonner aux nouveautés';
 $string['subscription_management'] = 'Gestion des abonnements';
 $string['tout_activer'] = 'Tout activer';
+$string['notification_library'] = 'S\'abonner aux publications';

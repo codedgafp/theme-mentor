@@ -1,3 +1,4 @@
+$size-sm: 375px;
 .mentor_notification_button {
     margin-right: 10px;
     margin-bottom: 10px;
@@ -595,4 +596,25 @@
     height: 1.2rem;
     padding-right: -26px;
     margin-right: -0.5rem;
+}
+
+.ui-dialog{
+    @media (max-width: $size-sm) {
+        width: 90% !important;
+      }
+      .ui-dialog-titlebar{
+        @media (max-width: $size-sm) {
+          width: 90% !important;
+        }
+    }
+}
+.ui-dialog .ui-dialog-title {
+    @media (max-width: $size-sm) {
+        font-size: 17px !important;
+      }
+}
+#notification_modal {
+    @media (max-width: $size-sm) {
+        width: 90% !important;
+      }
 }
