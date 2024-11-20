@@ -398,6 +398,27 @@
 
 .row.cards-mentor {
   margin-right: 0;
+  justify-content: flex-start;
+  margin-left: 2.25rem;
+  justify-items: center; 
+  justify-content: flex-start;
+
+  @media (max-width: $size-xl) {    
+    margin-left: 9rem; 
+  }
+
+
+  @media (max-width: $size-lg) {    
+    margin-left: 1rem;   
+  }
+
+  @media (max-width: $size-md) {    
+    margin-left: 0rem;    
+  }
+
+  @media (max-width: $size-sm) {    
+    margin-left: -0.25rem;      
+  }
 
 }
 
@@ -411,6 +432,30 @@
   min-width: 200px;
   padding-left: 0;
   padding-right: 0;
+  max-width: 24rem;  
+  
+@media (max-width: $size-lg) {
+ 
+      max-width: 12rem !important;  
+  }
+
+@media (max-width: $size-mobile) {
+  
+      max-width: 17rem !important; 
+  
+}
+
+@media (max-width: $size-md) {
+ 
+      max-width: 17rem !important; 
+  
+}
+
+@media (max-width: $size-sm) {
+  
+      width: 16rem !important;
+  
+}
 
   .card-text {
     margin-bottom: 3rem;
