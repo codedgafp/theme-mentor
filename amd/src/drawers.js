@@ -1,4 +1,5 @@
-define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/templates", "core/aria", "core/event_dispatcher", "core/utils", "core/pending", "jquery"], (function(_exports, _modal_backdrop, _templates, Aria, _event_dispatcher, _utils, _pending, _jquery) {
+define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/templates", "core/aria", "core/event_dispatcher", "core/utils", "core/pending", "jquery",
+    'core/local/aria/focuslock',], (function (_exports, _modal_backdrop, _templates, Aria, _event_dispatcher, _utils, _pending, _jquery, FocusLock) {
     function _getRequireWildcardCache(nodeInterop) {
         if ("function" != typeof WeakMap) return null;
         var cacheBabelInterop = new WeakMap,
@@ -131,6 +132,7 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
             }
             isSmall() && getBackdrop().then((backdrop => {
                 backdrop.show();
+                FocusLock.trapFocus(this.drawerNode);
                 return document.getElementById("page").style.overflow = "hidden", backdrop
             })).catch();
             const closeButton = this.drawerNode.querySelector(SELECTORS_CLOSEBTN);
@@ -147,6 +149,9 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
             if (this.dispatchEvent(Drawers.eventTypes.drawerHide, !0).defaultPrevented) return;
             const closeButton = this.drawerNode.querySelector(SELECTORS_CLOSEBTN);
             var _jQuery2;
+            if (isSmall()) {
+                FocusLock.untrapFocus();
+            }
             (null == closeButton || closeButton.classList.toggle("hidden", !0), closeButton.hasAttribute("data-original-title")) && (null === (_jQuery2 = (0, _jquery.default)(closeButton)) || void 0 === _jQuery2 || _jQuery2.tooltip("hide"));
             const preference = this.drawerNode.dataset.preference;
             preference && updatePreferences && !isSmall() && M.util.set_user_preference(preference, !1);
@@ -246,6 +251,7 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
                 [(drawerNode = drawerInstance.drawerNode).querySelector(SELECTORS_CLOSEBTN), getDrawerOpenButton(drawerNode.id)].forEach((button => {
                     button && enableButtonTooltip(button)
                 }))
+                FocusLock.untrapFocus();
             })), getBackdrop().then((backdrop => backdrop.hide())).catch()
         }), 400))
     })();
