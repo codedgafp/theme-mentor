@@ -657,4 +657,31 @@ class theme_mentor_core_renderer extends core_renderer
         $main_content = "<$balise role='main'>" . $this->unique_main_content_token . "</$balise>";
         return $main_content;
     }
+
+    /**
+     * Renders a custom static link (e.g., "About Us") with an icon if the user is not logged in.
+     *
+     * @return string HTML for the static link.
+     */
+    public function render_custom_static_head_links(): string {
+
+        $links = '';
+        if (!isloggedin() || isguestuser()) {
+            
+            $openli = '<li class="nav-item">';
+            $closeli = '</li>';
+            
+            $catalogicone = '<i class="fa fa-list" aria-hidden="true"></i>';
+            $cataloglabel = get_string('discovertrainingsoffer', 'theme_mentor');
+            $cataloglink = $openli . '<a href="/offre" class="nav-link custom-static-head-links align-items-center">'. $catalogicone . ' ' . $cataloglabel . '</a>' . $closeli;
+            $links .= $cataloglink;
+
+            $abouticone = '<i class="fa fa-question-circle-o ms-2" aria-hidden="true"></i> ';
+            $aboutlabel = get_string('about', 'theme_mentor');
+            $aboutlink = $openli . '<a href="/local/staticpage/view.php?page=apropos" class="nav-link custom-static-head-links">'. $abouticone . ' ' . $aboutlabel . ' </a>' . $closeli;
+            $links .= $aboutlink;   
+        }
+
+        return $links;
+    }
 }
