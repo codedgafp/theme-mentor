@@ -72,19 +72,20 @@ class verify_email_form extends \moodleform {
     public function validation($data, $files) {
         global $CFG;
 
+        require_once($CFG->dirroot . '/local/mentor_core/classes/helper/form_checker.php');
+
         $errors = parent::validation($data, $files);
         $db = \local_mentor_core\database_interface::get_instance();
 
         // Check if email data exist.
         if (isset($data['email'])) {
-
             // Check if email is allowed.
             if (!local_mentor_core_email_is_allowed(\core_text::strtolower($data['email']))) {
                 $errors['email'] = '<p>' . get_string('formnotallowedemail', 'theme_mentor', get_config('theme_mentor', 'about')) . '</p>';
             }
 
             // Check if the email does not exist.
-            if ($db->get_user_by_email($data['email'])) {
+            if (check_users_by_email($data['email'])) {
                 $errors['email'] = '<p>' . get_string('formexistemail', 'theme_mentor', $CFG->wwwroot . '/login/forgot_password.php') . '</p>';
             }
 
