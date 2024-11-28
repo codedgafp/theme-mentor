@@ -620,11 +620,8 @@ body.notloggedin,
   margin-right: 10px;
   padding: 5px;
   color: inherit;
-  @media only screen and (min-width: 1248px) and (max-width: 1919px) {
-    font-size: 18px;
-  }
+  font-size: 14px;
   @media only screen and (min-width: 1920px) {
-    font-size: 16px;
     margin-right: 5px;
   }
 }
@@ -640,6 +637,13 @@ body.notloggedin,
     margin-right: 3px;
     margin-top: 5px;
   }
+}
+.custom-static-head-links:hover{
+  background-color: #f6f6f6;
+}
+.custom-static-head-links-group{
+  margin-right: 150px;
+  display: inline-flex;
 }
 
 }

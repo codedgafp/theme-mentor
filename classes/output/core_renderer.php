@@ -664,24 +664,24 @@ class theme_mentor_core_renderer extends core_renderer
      * @return string HTML for the static link.
      */
     public function render_custom_static_head_links(): string {
-
-        $links = '';
-        if (!isloggedin() || isguestuser()) {
+        global $PAGE;
+        $links = '<div class="custom-static-head-links-group">';
+        if ($PAGE->url && strpos($PAGE->url->get_path(), 'login/index.php') && !isloggedin() || isguestuser()) {
             
             $openli = '<li class="nav-item">';
             $closeli = '</li>';
             
             $catalogicone = '<i class="fa fa-list" aria-hidden="true"></i>';
             $cataloglabel = get_string('discovertrainingsoffer', 'theme_mentor');
-            $cataloglink = $openli . '<a href="/offre" class="nav-link custom-static-head-links align-items-center">'. $catalogicone . ' ' . $cataloglabel . '</a>' . $closeli;
+            $cataloglink = $openli . '<a href="/offre" class="nav-link fr-btn fr-icon-file-text-line custom-static-head-links align-items-center">'. $catalogicone . ' ' . $cataloglabel . '</a>' . $closeli;
             $links .= $cataloglink;
 
             $abouticone = '<i class="fa fa-question-circle-o ms-2" aria-hidden="true"></i> ';
             $aboutlabel = get_string('about', 'theme_mentor');
-            $aboutlink = $openli . '<a href="/local/staticpage/view.php?page=apropos" class="nav-link custom-static-head-links">'. $abouticone . ' ' . $aboutlabel . ' </a>' . $closeli;
+            $aboutlink = $openli . '<a href="/local/staticpage/view.php?page=ensavoirplus" class="nav-link custom-static-head-links">'. $abouticone . ' ' . $aboutlabel . ' </a>' . $closeli;
             $links .= $aboutlink;   
         }
-
+        $links.= '</div>';
         return $links;
     }
 }
