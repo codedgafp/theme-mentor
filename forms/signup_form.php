@@ -178,23 +178,16 @@ class signup_form extends \moodleform {
         $listdepartments = ['' => get_string('choose') . '...'] + $listdepartments;
         $mform->addElement('select', 'profile_field_department', get_string('formdepartment', 'theme_mentor'), $listdepartments);
 
-        // Legal mentions.
+        // Legal mentions & Personal data .
         $legalmentionurl = get_config('theme_mentor', 'legalnotice');
-        if (!empty($legalmentionurl)) {
+        $personaldataurl = get_config('theme_mentor', 'personaldata');
+        if (!empty($legalmentionurl) && !empty($personaldataurl)) {
+            
             $mform->addElement('html',
-                    '<a href="' . $legalmentionurl . '" class="signup-link" target="_blank" rel="help opener">' .
-                    get_string('legalnotice', 'theme_mentor') .
-                    '</a>');
+                    'En continuant, vous confirmez avoir pris connaissance des <a href="' . $legalmentionurl . '" target="_blank" rel="help opener">' . get_string('legalnotice', 'theme_mentor') . '</a>
+                     et de la page de gestion des <a href="' . $personaldataurl . '" class="" target="_blank" rel="help opener">' .get_string('personaldata', 'theme_mentor') .'</a>.');
         }
 
-        // Personal data.
-        $personaldataurl = get_config('theme_mentor', 'personaldata');
-        if (!empty($personaldataurl)) {
-            $mform->addElement('html',
-                    '<a href="' . $personaldataurl . '" class="signup-link" target="_blank" rel="help opener">' .
-                    get_string('personaldata', 'theme_mentor') .
-                    '</a>');
-        }
 
         $this->add_action_buttons(true, get_string('createaccount', 'theme_mentor'));
     }
