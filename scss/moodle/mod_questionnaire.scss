@@ -96,6 +96,10 @@
   .mod_questionnaire_reportpage {
     .box.generalbox {
       padding-bottom: 25px;
+
+      img.icon[alt="Download PDF"] {
+        display: none;
+      }
     }
 
     .singlebutton {
