@@ -184,8 +184,10 @@ class signup_form extends \moodleform {
         if (!empty($legalmentionurl) && !empty($personaldataurl)) {
             
             $mform->addElement('html',
-                    'En continuant, vous confirmez avoir pris connaissance des <a href="' . $legalmentionurl . '" target="_blank" rel="help opener">' . get_string('legalnotice', 'theme_mentor') . '</a>
-                     et de la page de gestion des <a href="' . $personaldataurl . '" class="" target="_blank" rel="help opener">' .get_string('personaldata', 'theme_mentor') .'</a>.');
+                    '<br><p>
+                    En continuant, vous confirmez avoir lu et accepté les <a href="' . $legalmentionurl . '" target="_blank" rel="help opener">' . get_string('legalnotice', 'theme_mentor') . '</a>
+                     et la page de gestion des <a href="' . $personaldataurl . '" class="" target="_blank" rel="help opener">' .get_string('personaldata', 'theme_mentor') .'</a>.
+                     <p>');
         }
 
 
