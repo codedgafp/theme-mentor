@@ -417,38 +417,23 @@
               }
 
               #agent-connect {
-                width: 151px;
-                height: 40px;
-                padding: 0 10px 0 8px;
-                background-color: #0579ee;
-                color: #f5f5fe;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-
-                img {
-                  width: 28.6px;
-                  height: 34.3px;
-                }
-
-                p {
-                  font-size: 12.1px;
-                  font-weight: normal;
-                  font-stretch: normal;
-                  font-style: normal;
-                  line-height: 1;
-                  letter-spacing: -0.04px;
-                  margin: 0;
-
-                  span {
-                    font-size: 12.9px;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: 1;
-                  }
-                }
+                width: 151px !important;
+                height: 41px !important;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-color: transparent !important;
+                background-size: contain;  /* Ensures the image fits within the element */
+                background-position: center;
+                background-image: url("[[pix:theme|logo-pro-agent-connect]]");
+                border: none;
+              }
+              #agent-connect:hover {
+                background-image: url("[[pix:theme|logo-pro-agent-connect-hover]]");
+                background-size: contain;  /* Ensures the image fits within the element */
+                background-position: center;
+                width: 151px !important;
+                height: 41px !important;
+                border: none;
               }
             }
 
