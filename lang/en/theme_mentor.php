@@ -56,6 +56,7 @@ $string['exittomod'] = 'Sortir de l\'activité';
 // Mentor theme.
 $string['mentorgeneralsettings'] = 'Paramètres thème Mentor';
 $string['about'] = 'En savoir plus sur Mentor';
+$string['about_footer'] = 'En savoir plus';
 $string['about_desc'] = 'Lien vers la page "En savoir plus"';
 $string['legalnotice'] = 'mentions légales';
 $string['legalnotice_desc'] = 'Lien vers la page "Mentions légales"';
