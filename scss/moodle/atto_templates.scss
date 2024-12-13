@@ -397,14 +397,13 @@
 }
 
 .row.cards-mentor {
-  margin-right: 0;
-  justify-content: flex-start;
-  margin-left: 2.25rem;
+  margin-right: 1rem;
+  margin-left: 3rem;
   justify-items: center; 
-  justify-content: flex-start;
+  justify-content: space-between;
 
   @media (max-width: $size-xl) {    
-    margin-left: 9rem; 
+    margin-left: 0rem; 
   }
 
 
@@ -413,7 +412,7 @@
   }
 
   @media (max-width: $size-md) {    
-    margin-left: 0rem;    
+    margin-left: 1rem;    
   }
 
   @media (max-width: $size-sm) {    
@@ -436,7 +435,7 @@
   
 @media (max-width: $size-lg) {
  
-      max-width: 12rem !important;  
+      max-width: 18rem !important;  
   }
 
 @media (max-width: $size-mobile) {
