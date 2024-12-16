@@ -77,8 +77,9 @@ define(['jquery'],
 
                     // If the key and value of the last section are present in
                     // the local storage and a redirection is required, the user
-                    // is sent to the last section visited.
-                    if (getLastVisitedSection() != null && comebackToCourse(referrerPathname)) {
+                    // is sent to the last section visited only if the url doesn't have section=.
+                    //if so, then no redirection to the last visited section.
+                    if ( urlParam('section') === null && getLastVisitedSection() != null && comebackToCourse(referrerPathname)) {
                         window.location.href = URL;
                         URL = null;
                     }
