@@ -397,28 +397,23 @@
 }
 
 .row.cards-mentor {
-  margin-right: 1rem;
-  margin-left: 3rem;
-  justify-items: center; 
-  justify-content: space-between;
+  margin-right: 0;
+  margin-right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 4rem;
+  box-sizing: border-box;
+  margin-left:  3rem;
+  
+}
 
-  @media (max-width: $size-xl) {    
-    margin-left: 0rem; 
+/** Mozilla Firefox */
+@-moz-document url-prefix() {
+  .row.cards-mentor{
+    margin-left: 1.5rem;
+    gap: 0rem;
   }
-
-
-  @media (max-width: $size-lg) {    
-    margin-left: 1rem;   
-  }
-
-  @media (max-width: $size-md) {    
-    margin-left: 1rem;    
-  }
-
-  @media (max-width: $size-sm) {    
-    margin-left: -0.25rem;      
-  }
-
 }
 
 .add-card,

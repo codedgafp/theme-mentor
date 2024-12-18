@@ -43,3 +43,9 @@ window.addEventListener('load', function () {
         });
     }
 });
+
+if (navigator.userAgent.includes('Edg')) {
+    document.querySelector(".row.cards-mentor").style.gap = '0rem';
+    document.querySelector(".row.cards-mentor").style.marginLeft = '1.5rem';
+  }
+  
