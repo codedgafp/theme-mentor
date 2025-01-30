@@ -6,39 +6,46 @@
 var cardEvents = function (addCard) {
 
     // Add card
-    $(addCard).on('click', function (eventClick) {
-        var cardMentor = $(eventClick.target).parent();
-        $(cardMentor.clone()).insertAfter(cardMentor);
+    document.addEventListener('click', function(event) {
+        if (event.target.matches(addCard)) {
+            var cardMentor = $(event.target).parent();
+            $(cardMentor.clone()).insertAfter(cardMentor);
+        }
     });
 
     // Remove card
-    var closeCard = $(addCard).next();
-    $(closeCard).on('click', function (eventClick) {
-        var cardMentor = $(eventClick.target).parent();
-        cardMentor.remove();
+    document.addEventListener('click', function(eventClick) {
+        if (eventClick.target.matches('.remove-card')) {
+            var cardMentor = $(eventClick.target).parent();
+            cardMentor.remove();
+        }
     });
-};
-
+}
 // Wait DOM load
 window.addEventListener('load', function () {
     let attoEditors = $('.editor_atto_content');
+
     // Check if is atto editor page
     if (attoEditors.length) {
         // Add events in cards existingg
-        cardEvents('.add-card');
-
+        cardEvents('.add-card');      
+         
         attoEditors.on('DOMNodeInserted', (event) => {
             const target = $(event.target);
         
             if (target.hasClass('cards-mentor')) {
-                // Add events in new card when it is added with atto snippet
-                cardEvents(target.find('> :first-child > :first-child')[0]);
-                
+            // Add events in new card when it is added with atto snippet
+            var targetElements = target.find('> :first-child > :first-child')[0];
+            var selectorCards = targetElements.getAttribute('class'); // Or generate an appropriate selector
+            cardEvents(`.${selectorCards}`);
+            
             }
 
-            if (target.hasClass('card-mentor')) {
-                // Add events in new card when it is added with card button
-               cardEvents(target.find('> :first-child')[0]);
+            if (target.hasClass('card-mentor')) {                
+            // Add events in new card when it is added with card button
+            var targetElement = target.find('> :first-child')[0];
+            var selector = targetElement.getAttribute('class'); // Or generate an appropriate selector
+            cardEvents(`.${selector}`);  // Pass a valid string selector to cardEvents
             }
         });
     }
