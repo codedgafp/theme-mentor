@@ -73,6 +73,7 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '.card-header', function (event) {
+        event.preventDefault();
 
         // When Collapse isn't in the atto snippet editor
         if (!$(event.currentTarget).parents('.editor_atto_content').length) {
