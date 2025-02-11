@@ -97,7 +97,8 @@ $THEME->javascripts_footer = [
     'usertours',
     'header',
     'search',
-    'trackurls'
+    'trackurls',
+    'questionnaire'
 ];
 
 $THEME->haseditswitch = true;
