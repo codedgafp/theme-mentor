@@ -10,13 +10,17 @@ const observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
         mutation.addedNodes.forEach(function(node) {
             if (node.matches && node.matches('span[data-flexitour="container"].orphan')) {
-                let offset = $(document).scrollTop(),
+                const viewportHeight = window.innerHeight,
+                    elementHeight = $(node).outerHeight();
 
-                viewportHeight = $(window).height();
+                let offsettop = (viewportHeight - elementHeight) / 2;
 
-                node.css('top',  (offset  + (viewportHeight/2)) - (node.outerHeight()/2));
-
-                observer.disconnect();
+                setTimeout(() => {
+                    $(node).css({
+                        position: 'fixed',
+                        top: `${offsettop}px`
+                    });
+                });
             }
         });
     });
