@@ -16,33 +16,35 @@ table.dataTable tr {
 }
 
 .dataTables_filter {
-  label {
-    display: flex;
-    background-color: $maincolor;
-    background-image: url([[pix:theme|search]]);
-    background-repeat: no-repeat;
-    height: 32px;
-    width: 346px;
-    font-size: 0;
-    background-position: 323px center;
-
-    input[type="search"], input[type="text"] {
-      width: 314px;
+  #search-button {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-top-right-radius: 4px !important;
+    padding: 0 !important;
+    
+    .icon {
       margin: 0;
-      border: none;
-      padding: 8px 16px;
-      background-color: #f8f8f8;
-      border-bottom: 2px solid #6a6a6a;
-      font-size: 15px;
-      border-radius: 0;
+      font-size: 18px !important;
+    }
+  }
 
-      &:focus {
-        border: 2px solid #2a7ffe;
-        box-shadow: 0 0 0 0.2rem rgb(15 111 197 / 75%);
-        color: #495057;
-        background-color: $white;
-        outline: 0;
-      }
+  input[type="search"], input[type="text"] {
+    width: 314px;
+    margin: 0;
+    border: none;
+    padding: 8px 16px;
+    background-color: #f8f8f8;
+    border-bottom: 2px solid #6a6a6a;
+    font-size: 15px;
+    border-radius: 0;
+
+    &:focus {
+      border: 2px solid #2a7ffe;
+      box-shadow: 0 0 0 0.2rem rgb(15 111 197 / 75%);
+      color: #495057;
+      background-color: $white;
+      outline: 0;
     }
   }
 }
