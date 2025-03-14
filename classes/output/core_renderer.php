@@ -116,11 +116,6 @@ class theme_mentor_core_renderer extends core_renderer
         // Require mentor apis.
         require_once($CFG->dirroot . '/local/mentor_core/api/login.php');
 
-        // Check if browser is compatible.
-        if (!theme_mentor_check_browser_compatible()) {
-            redirect($CFG->wwwroot . '/theme/mentor/pages/browser_not_compatible.php');
-        }
-
         $context = $form->export_for_template($this);
 
         // Get about link, if exists.

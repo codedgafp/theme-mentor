@@ -45,11 +45,13 @@ function theme_mentor_get_main_scss_content($theme) {
  * @throws moodle_exception
  */
 function theme_mentor_page_init(moodle_page $page) {
-    global $CFG;
+    global $CFG, $PAGE;
 
     $page->requires->js_call_amd('theme_mentor/logout', 'init');
     $page->requires->js_call_amd('theme_mentor/search', 'init');
 
+    // Check if browser/OS is compatible.
+    theme_mentor_check_and_redirect_browser_compatibility();
 
     if (theme_mentor_is_in_mentor_page()) {
 
@@ -181,6 +183,17 @@ function theme_mentor_get_previous_button() {
     }
 
     return false;
+}
+
+/**
+ * Check and redirect if the browser/OS is not compatible.
+ */
+function theme_mentor_check_and_redirect_browser_compatibility() {
+    global $CFG, $PAGE;
+
+        if (  ($PAGE->url->get_path() !== '/theme/mentor/pages/browser_not_compatible.php') && (!theme_mentor_check_browser_compatible() || core_useragent::is_ios()) ){
+            redirect($CFG->wwwroot . '/theme/mentor/pages/browser_not_compatible.php');
+        }    
 }
 
 /**

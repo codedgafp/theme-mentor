@@ -183,3 +183,6 @@ $string['notification_catalog'] = 'S\'abonner aux nouveautés';
 $string['subscription_management'] = 'Gestion des abonnements';
 $string['tout_activer'] = 'Tout activer';
 $string['notification_library'] = 'S\'abonner aux publications';
+
+$string['invalidiosalert'] = 'Nous sommes désolés mais nous rencontrons actuellement un souci d\'affichage avec les smartphones de type Apple iPhone. Ce problème ne sera pas résolu avant le mois de juin. D\'ici-là, nous vous encourageons à utiliser un autre appareil.';
+$string['invalidbrowserios'] = 'OS/Navigateur non supporté';
