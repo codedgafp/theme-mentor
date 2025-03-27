@@ -214,11 +214,8 @@
 </div>
 
 {{#js}}
-    const courseFormat = "{{ format }}";
-    const sectionNum = {{ sectionreturn }};
-
     require(['theme_mentor/comeback_to_section'], function(ComebackToSection) {
-        ComebackToSection.init(courseFormat, sectionNum);
+        ComebackToSection.init({{ format }}, {{ sectionreturn }});
     });
 
     require(['core_courseformat/local/content'], function(component) {
