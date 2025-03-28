@@ -33,6 +33,8 @@ require_once($CFG->dirroot . '/local/mentor_specialization/lib.php');
 require_once($CFG->dirroot . '/local/mentor_core/api/entity.php');
 require_once($CFG->dirroot . '/local/mentor_core/lib.php');
 require_once($CFG->dirroot . '/lib/classes/text.php');
+require_once($CFG->dirroot . '/local/categories_domains/classes/utils/categories_domains_service.php');
+use local_categories_domains\utils\categories_domains_service;
 
 /**
  * Signup form
@@ -69,6 +71,7 @@ class signup_form extends \moodleform {
      */
     protected function definition() {
         $mform = $this->_form;
+        
 
         $mform->addElement('html', get_string('formtsignupinformation', 'theme_mentor'));
 
@@ -134,14 +137,25 @@ class signup_form extends \moodleform {
         $mform->addElement('select', 'profile_field_category', get_string('formcategory', 'theme_mentor'), $categorylist);
         $mform->addRule('profile_field_category', '', 'required');
 
-        // Get all entities can become main entity.
-        $listmainentities = explode("\n", \local_mentor_core\entity_api::get_entities_list(true, true, false, false));
-        $listmainentities = array_combine($listmainentities, $listmainentities);
-        $listmainentities = ['' => get_string('choose') . '...'] + $listmainentities;
+        // Get all entities
+        $cds = new categories_domains_service();
+        $listmainentities = $cds->get_list_entities_by_email($this->email);
 
+        if(count($listmainentities) > 1) {
+            $listmainentities = ['' => get_string('choose') . '...'] + $listmainentities;
+            
+        }
         // Mainentity.
         $mform->addElement('select', 'profile_field_mainentity', get_string('formmainentity', 'theme_mentor'), $listmainentities);
-        $mform->addRule('profile_field_mainentity', '', 'required');
+
+        if (count($listmainentities) == 1) {
+            $defaultvalue = reset($listmainentities);
+            $mform->setDefault('profile_field_mainentity', $defaultvalue);
+            $mform->disabledIf('profile_field_mainentity', '');
+        }else{
+            $mform->addRule('profile_field_mainentity', "", 'required');
+        }        
+
         $mform->addElement('static', 'mainentitypolicyinfo', '', get_string('formmainentityinformation', 'theme_mentor'));
 
         // Get all entities can become secondary entity.
@@ -209,7 +223,6 @@ class signup_form extends \moodleform {
         global $CFG;
 
         $data = $this->clean_data($data);
-
         $errors = parent::validation($data, $files);
         $db = \local_mentor_core\database_interface::get_instance();
 
