@@ -491,8 +491,12 @@
 
     @media (max-width: 640px) {
       flex-wrap: wrap !important;
+      height: calc($headermobileheight + 60px);
     }
 
+    @media(max-width: 456px) {
+      height: $headershortmobileheight;
+    }
     .nav-item {
       &.moodle-items {
         display: flex;
