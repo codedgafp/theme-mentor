@@ -98,7 +98,8 @@ $THEME->javascripts_footer = [
     'header',
     'search',
     'trackurls',
-    'questionnaire'
+    'questionnaire',
+    'mod_scorm'
 ];
 
 $THEME->haseditswitch = true;
