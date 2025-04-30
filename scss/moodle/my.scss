@@ -1,6 +1,8 @@
 #page-my-index {
 
   #page-header {
+    margin-right: 0;
+    margin-left: 0;
     background-position: right 15px center;
     background-repeat: no-repeat;
     background-size: auto 72%;
@@ -25,6 +27,8 @@
   }
 
   #page-content {
+    margin-right: 0;
+    margin-left: 0;
 
     @media(max-width: $size-mobile) {
       margin-left: 0;
