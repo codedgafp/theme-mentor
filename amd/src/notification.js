@@ -26,7 +26,9 @@ define([
                 this.clickOnToggle();
                 this.KeyPressOnToggle();                
                 this.initNotificationModalEvent();
-                this.fetchData();
+                document.addEventListener('DOMContentLoaded', function () {
+                    this.fetchData();
+                }.bind(this));
                 
         },
 
@@ -135,6 +137,14 @@ define([
         fetchData: function()
         {
            var that = this;
+           const ajaxInput = document.getElementById("ajax_file_path");
+           const controllerInput = document.getElementById("controller_get");
+           const actionInput = document.getElementById("function_get");
+         
+           if (!ajaxInput || !controllerInput || !actionInput) {
+             console.error("❌ One or more required elements not found in DOM.");
+             return;
+           }
             format_edadmin.ajax_call({
                 url: M.cfg.wwwroot + document.getElementById("ajax_file_path").value,
                 controller: document.getElementById("controller_get").value,

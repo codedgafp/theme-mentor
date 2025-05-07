@@ -27,7 +27,7 @@ require('../../../config.php');
 require_once($CFG->dirroot . '/theme/mentor/lib.php');
 
 // Redirect to login page if browser is compatible.
-if (theme_mentor_check_browser_compatible() && !core_useragent::is_ios()) {
+if (theme_mentor_check_browser_compatible()) {
     redirect(new moodle_url('/'));
 }
 
@@ -35,12 +35,11 @@ if (theme_mentor_check_browser_compatible() && !core_useragent::is_ios()) {
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url(new moodle_url('/theme/mentor/pages/browser_not_compatible.php'));
 $PAGE->set_pagelayout('login');
-$PAGE->set_title(get_string('invalidbrowserios', 'theme_mentor'));
+$PAGE->set_title(get_string('invalidbrowser', 'theme_mentor'));
 $sitename = format_string($SITE->fullname);
 
 echo $OUTPUT->header();
 echo $OUTPUT->navbar();
 
 echo get_string('invalidbrowseralert', 'theme_mentor');
-echo '<div style="color: red;">' . get_string('invalidiosalert', 'theme_mentor') . '</div>';
 echo $OUTPUT->footer();

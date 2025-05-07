@@ -20,11 +20,13 @@ define([], function () {
         //RGAA
         wrapeAsideTagInNavTag: function () {
             let asideTag = document.getElementById('block-region-side-pre');
-            let navTag = document.createElement('nav');
-            navTag.setAttribute('aria-label', 'Navigation de coté');
-            navTag.setAttribute('role', 'navigation');
-            asideTag.parentNode.insertBefore(navTag, asideTag);
-            navTag.appendChild(asideTag);
+            if (asideTag) {
+                let navTag = document.createElement('nav');
+                navTag.setAttribute('aria-label', 'Navigation de coté');
+                navTag.setAttribute('role', 'navigation');
+                asideTag.parentNode.insertBefore(navTag, asideTag);
+                navTag.appendChild(asideTag);
+            }
         }
     };
 });
