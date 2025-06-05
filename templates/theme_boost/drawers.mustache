@@ -184,6 +184,8 @@
     });
 
     require(['theme_mentor/common'], function(common) {
-    common.wrapeAsideTagInNavTag();
+    document.addEventListener('DOMContentLoaded', function() {
+            common.wrapeAsideTagInNavTag();
+        });
     });
 {{/js}}
