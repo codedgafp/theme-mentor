@@ -23,7 +23,6 @@ if ($('#id_auth option[value="ldap_syncplus"]').length > 0) {
  * @param {Array} formList
  */
 var profileMainEntityFilter = function (formList) {
-
     // Get secondary entities select.
     var secondaryEntitySelect = $('#id_profile_field_secondaryentities').val();
 
@@ -42,6 +41,7 @@ var profileMainEntityFilter = function (formList) {
         $select.append($("<option></option>")
             .attr("value", value).text(value));
     });
+
     // Set older element select.
     $select.val(mainEntitySelect);
 };
@@ -82,7 +82,6 @@ var profileSecondaryEntitiesFilter = function (formList) {
 
 // Check if input exist.
 if ($('#id_profile_field_mainentity').length && $('#id_profile_field_secondaryentities').length) {
-
     // Get all main entity data select.
     var formMainEntityList = $.map($('#id_profile_field_mainentity').find('option'), function (opt) {
         return opt.text;
@@ -91,19 +90,5 @@ if ($('#id_profile_field_mainentity').length && $('#id_profile_field_secondaryen
     // Get all secondary entity data select.
     var formSecondaryEntityList = $.map($('#id_profile_field_secondaryentities').find('option'), function (opt) {
         return opt.text;
-    });
-
-    profileMainEntityFilter(formMainEntityList);
-
-    profileSecondaryEntitiesFilter(formSecondaryEntityList);
-
-    // When main entity input change.
-    $('#id_profile_field_mainentity').change(function () {
-        profileSecondaryEntitiesFilter(formSecondaryEntityList);
-    });
-
-    // When secondary entities input change.
-    $('#id_profile_field_secondaryentities').change(function () {
-        profileMainEntityFilter(formMainEntityList);
     });
 }
