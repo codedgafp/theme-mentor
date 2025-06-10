@@ -26,9 +26,12 @@ define([
                 this.clickOnToggle();
                 this.KeyPressOnToggle();                
                 this.initNotificationModalEvent();
-                document.addEventListener('DOMContentLoaded', function () {
-                    this.fetchData();
-                }.bind(this));
+                const handler = this.fetchData.bind(this);
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', handler);
+                } else {
+                    handler();
+                }  
                 
         },
 
