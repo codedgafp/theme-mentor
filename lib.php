@@ -23,6 +23,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core_h5p\core;
+
 /**
  * Get the scss content of the theme
  *
@@ -106,19 +108,44 @@ function theme_mentor_page_init(moodle_page $page) {
 function theme_mentor_check_browser_compatible() {
     global $CFG;
 
-    $browserinformations = get_browser();
-
     if (!isset($CFG->browserrequirements)) {
         return true;
     }
 
-    if (!array_key_exists($browserinformations->browser, $CFG->browserrequirements)) {
+    $browserinformations = get_browser_info($CFG->browserrequirements);
+
+    if (!$browserinformations) {
         return false;
     }
 
-    return $CFG->browserrequirements[$browserinformations->browser] <= intval($browserinformations->version) ||
-           $browserinformations->version === '0.0';
+    return $CFG->browserrequirements[$browserinformations['browser']] <= intval($browserinformations['version']) ||
+        $browserinformations['version'] === '0.0';
 }
+
+function get_browser_info(array $browserrequirements) : array{
+
+    $useragent = \core_useragent::get_user_agent_string();
+
+    foreach ($browserrequirements as $browsername => $minversion) {
+
+        $pattern = '/' . preg_quote($browsername, '/') . '\/([0-9\.]+)/i';
+
+        if(preg_quote($browsername, '/') == "Edge")
+        {
+            $pattern = '/Edg\/([0-9\.]+)/i';
+        }        
+
+        if (preg_match($pattern, $useragent, $matches)) {
+            return [
+                'browser' => $browsername,
+                'version' => $matches[1],
+            ];
+        }
+    }
+    return []; 
+}
+
+
 
 /**
  * Check if the page has a previous button in the bottom of the page.
