@@ -143,7 +143,7 @@ $string['formstatus'] = 'Statut';
 $string['formcategory'] = 'Catégorie**';
 $string['formmainentity'] = 'Entité de rattachement principale';
 $string['formmainentityinformation']
-    = 'Le choix d\'une entité de rattachement principale vous permettra d\'accéder à des formations dédiées aux agents de votre entité. Si aucune entité ne correspond à votre rattachement administratif actuel, il est conseillé de choisir « Autre » dans un premier temps.';
+    = "L'entité de rattachement principale est automatiquement complétée selon votre domaine de messagerie.<br>Ce rattachement vous permettra d'accéder à des formations dédiées aux agents de votre entité.";
 $string['formsecondaryentities'] = 'Entité(s) de rattachement secondaire(s)';
 $string['formsecondaryentitiesinformation']
     = 'Pour enrichir votre offre de formation, vous pouvez choisir une ou plusieurs entités de rattachement secondaires qui correspondent à vos problématiques professionnelles actuelles. Ces choix peuvent être modifiés à tout moment en éditant votre profil.';
