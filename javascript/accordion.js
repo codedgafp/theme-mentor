@@ -1,7 +1,7 @@
 // Collapse event
 $(document).ready(function () {
-    const chevronDown = '<i class="collapse-chevron fa fa-chevron-down" aria-hidden="true"></i>'
-    const chevronUp = '<i class="collapse-chevron fa fa-chevron-up" aria-hidden="true"></i>'
+    const chevronDown = '<i class="collapse-chevron fas fa-chevron-down" aria-hidden="true"></i>'
+    const chevronUp = '<i class="collapse-chevron fas fa-chevron-up" aria-hidden="true"></i>'
     // Set aria-expanded to all card-header on the page.
     $('.card-header').each(function () {
         if ($(this).hasClass('opened')) {
@@ -88,7 +88,7 @@ $(document).ready(function () {
             if (contentTarget.hasClass('show')) {
 
                 // Hidden target element
-                contentTarget.collapse('hide');
+                contentTarget.removeClass('show');
 
                 // Remove 'opened' class to target collapse element header
                 $(event.currentTarget).removeClass('opened');
@@ -100,7 +100,7 @@ $(document).ready(function () {
                 // Change header right target collapse element to close
                 $('.header-right', event.currentTarget).html(chevronDown);
             } else {// When target element is closed
-                contentTarget.collapse('show');
+                contentTarget.addClass('show');
 
                 // Change header right target collapse element indicator to open
                 $('.header-right', event.currentTarget).html(chevronUp);
@@ -121,7 +121,7 @@ $(document).ready(function () {
                     if (!$(content).is(contentTarget)) {
 
                         // Hidden other collapse element
-                        $(content).collapse('hide');
+                        $(content).removeClass('show');
 
                         // Change header right other collapse element indicator to open
                         $('.header-right', $(content).prev()).html(chevronDown);
