@@ -62,7 +62,7 @@ class mentor_primary extends \core\navigation\output\primary {
         ];
     }
 
-    protected function get_primary_nav(): array {
+    protected function get_primary_nav($parent = null): array {
         global $PAGE, $USER;
 
         if ($USER->id === 0) {
