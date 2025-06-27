@@ -46,6 +46,11 @@ $mobile-break: 768px;
         gap: 14px;
       }
 
+      img.icon {
+        max-width: unset;
+        max-height: unset;
+      }
+
       a {
         display: block;
         padding-right: 10px;
