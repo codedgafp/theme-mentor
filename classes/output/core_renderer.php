@@ -173,6 +173,8 @@ class theme_mentor_core_renderer extends core_renderer
 
         $context->mentorpictureurl = $this->image_url('logo-mentor-w', 'theme_mentor');
 
+        $context->username = "";       
+        
         // Load the login form template.
         return $this->render_from_template('core/loginform', $context);
     }
