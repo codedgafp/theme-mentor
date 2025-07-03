@@ -346,7 +346,7 @@ body[class*="course-"] {
       .activityicon {
         height: 36px;
         width: 36px;
-        filter: none;
+        filter: brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(2595%) hue-rotate(234deg) brightness(92%) contrast(144%)!important;
       }
     }
   }
