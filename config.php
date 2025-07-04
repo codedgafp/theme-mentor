@@ -99,7 +99,8 @@ $THEME->javascripts_footer = [
     'search',
     'trackurls',
     'questionnaire',
-    'mod_scorm'
+    'mod_scorm',
+    'coursemenuicon'
 ];
 
 $THEME->haseditswitch = true;
