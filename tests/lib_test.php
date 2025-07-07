@@ -86,12 +86,12 @@ class theme_mentor_lib_testcase extends advanced_testcase {
         $previousbutton = theme_mentor_get_previous_button();
 
         self::assertIsObject($previousbutton);
-        self::assertObjectHasAttribute('prevstepurl', $previousbutton);
+        self::assertObjectHasProperty('prevstepurl', $previousbutton);
         self::assertEquals(
             $CFG->wwwroot . '/course/view.php?id=' . $course->id . '&section=0',
             $previousbutton->prevstepurl
         );
-        self::assertObjectHasAttribute('prevstetitle', $previousbutton);
+        self::assertObjectHasProperty('prevstetitle', $previousbutton);
         self::assertEquals(get_string('exittomod', 'theme_mentor'), $previousbutton->prevstetitle);
 
         self::resetAllData();
@@ -113,12 +113,12 @@ class theme_mentor_lib_testcase extends advanced_testcase {
         $previousbutton = theme_mentor_get_previous_button();
 
         self::assertIsObject($previousbutton);
-        self::assertObjectHasAttribute('prevstepurl', $previousbutton);
+        self::assertObjectHasProperty('prevstepurl', $previousbutton);
         self::assertEquals(
             $CFG->wwwroot . '/local/catalog/index.php',
             $previousbutton->prevstepurl
         );
-        self::assertObjectHasAttribute('prevstetitle', $previousbutton);
+        self::assertObjectHasProperty('prevstetitle', $previousbutton);
         self::assertEquals(get_string('prevstepcatalog', 'theme_mentor'), $previousbutton->prevstetitle);
 
         self::resetAllData();
@@ -140,12 +140,12 @@ class theme_mentor_lib_testcase extends advanced_testcase {
         $previousbutton = theme_mentor_get_previous_button();
 
         self::assertIsObject($previousbutton);
-        self::assertObjectHasAttribute('prevstepurl', $previousbutton);
+        self::assertObjectHasProperty('prevstepurl', $previousbutton);
         self::assertEquals(
             $CFG->wwwroot . '/',
             $previousbutton->prevstepurl
         );
-        self::assertObjectHasAttribute('prevstetitle', $previousbutton);
+        self::assertObjectHasProperty('prevstetitle', $previousbutton);
         self::assertEquals(get_string('prevstepdashboard', 'theme_mentor'), $previousbutton->prevstetitle);
 
         self::resetAllData();
@@ -170,12 +170,12 @@ class theme_mentor_lib_testcase extends advanced_testcase {
         $previousbutton = theme_mentor_get_previous_button();
 
         self::assertIsObject($previousbutton);
-        self::assertObjectHasAttribute('prevstepurl', $previousbutton);
+        self::assertObjectHasProperty('prevstepurl', $previousbutton);
         self::assertEquals(
             $CFG->wwwroot . '/local/trainings/pages/update_training.php?trainingid=' . $falsetrainingid,
             $previousbutton->prevstepurl
         );
-        self::assertObjectHasAttribute('prevstetitle', $previousbutton);
+        self::assertObjectHasProperty('prevstetitle', $previousbutton);
         self::assertEquals(get_string('closetrainingpreview', 'local_trainings'), $previousbutton->prevstetitle);
 
         self::resetAllData();
@@ -197,12 +197,12 @@ class theme_mentor_lib_testcase extends advanced_testcase {
         $previousbutton = theme_mentor_get_previous_button();
 
         self::assertIsObject($previousbutton);
-        self::assertObjectHasAttribute('prevstepurl', $previousbutton);
+        self::assertObjectHasProperty('prevstepurl', $previousbutton);
         self::assertEquals(
             $CFG->wwwroot . '/local/library/index.php',
             $previousbutton->prevstepurl
         );
-        self::assertObjectHasAttribute('prevstetitle', $previousbutton);
+        self::assertObjectHasProperty('prevstetitle', $previousbutton);
         self::assertEquals(get_string('libraryreturn', 'theme_mentor'), $previousbutton->prevstetitle);
 
         self::resetAllData();
