@@ -51,6 +51,7 @@ function theme_mentor_page_init(moodle_page $page) {
 
     $page->requires->js_call_amd('theme_mentor/logout', 'init');
     $page->requires->js_call_amd('theme_mentor/search', 'init');
+    $page->requires->js_call_amd('theme_mentor/modal_focus');
 
     if ($PAGE->pagetype === 'course-edit') {
         $page->requires->js_call_amd('theme_mentor/courseformat', 'init');
