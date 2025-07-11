@@ -330,6 +330,11 @@ input[type="radio"] {
         padding-left: 0 !important;
         padding-right: 0 !important;
       }
+
+      .header-actions-container[data-region="header-actions-container"] .header-action .bulkEnable {
+     
+        display: none;
+      }
     }
   }
 }
