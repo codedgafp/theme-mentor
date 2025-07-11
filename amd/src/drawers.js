@@ -68,6 +68,10 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
             let openButton = document.querySelector("".concat(SELECTORS_OPENBTN, '[data-target="').concat(drawerId, '"]'));
             return openButton || (openButton = document.querySelector("".concat(SELECTORS_TOGGLEBTN, '[data-target="').concat(drawerId, '"]'))), openButton
         },
+        getDrawerToggleButton = drawerId => {
+            let toggleButton = document.querySelector("".concat(SELECTORS_TOGGLEBTN, '[data-target="').concat(drawerId, '"]'));
+            return toggleButton || (toggleButton = document.querySelector("".concat(SELECTORS_TOGGLEBTN, '[data-target="').concat(drawerId, '"]'))), toggleButton
+        },
         disableDrawerTooltips = drawerNode => {
             [drawerNode.querySelector(SELECTORS_CLOSEBTN), getDrawerOpenButton(drawerNode.id)].forEach((button => {
                 button && disableButtonTooltip(button)
@@ -139,6 +143,10 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
             focusOnCloseButton && closeButton && disableButtonTooltip(closeButton, !0), setTimeout((() => {
                 closeButton.classList.toggle("hidden", !1), focusOnCloseButton && closeButton.focus(), pendingPromise.resolve()
             }), 300), this.dispatchEvent(Drawers.eventTypes.drawerShown)
+
+            const toggleButton = getDrawerToggleButton(this.drawerNode.id);
+            const buttons = [openButton, closeButton, toggleButton];
+            buttons.forEach(btn => btn.setAttribute('aria-expanded', 'true'));
         }
         closeDrawer() {
             let {
@@ -169,6 +177,10 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
             openButton && disableButtonTooltip(openButton, !0), setTimeout((() => {
                 openButton && focusOnOpenButton && openButton.focus(), pendingPromise.resolve()
             }), 300), this.dispatchEvent(Drawers.eventTypes.drawerHidden)
+
+            const toggleButton = getDrawerToggleButton(this.drawerNode.id);
+            const buttons = [openButton, closeButton, toggleButton];
+            buttons.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
         }
         toggleVisibility() {
             this.drawerNode.classList.contains(CLASSES_SHOW) ? this.closeDrawer() : this.openDrawer()
@@ -213,7 +225,6 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
                 const targetDrawer = document.getElementById(toggleButton.dataset.target),
                     drawerInstance = Drawers.getDrawerInstanceForNode(targetDrawer);
                 setLastUsedToggle(toggleButton), drawerInstance.toggleVisibility();
-                document.getElementById('navbar_responsive_button').setAttribute('aria-expanded', 'true');
             }
             const openDrawerButton = e.target.closest(SELECTORS_OPENBTN);
             if (openDrawerButton && openDrawerButton.dataset.target) {
@@ -226,7 +237,6 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
             if (closeDrawerButton && closeDrawerButton.dataset.target) {
                 e.preventDefault();
                 const targetDrawer = document.getElementById(closeDrawerButton.dataset.target);
-                document.getElementById('navbar_responsive_button').setAttribute('aria-expanded', 'false');
                 Drawers.getDrawerInstanceForNode(targetDrawer).closeDrawer(), (target => {
                     const lastUsedButton = document.querySelector("".concat(SELECTORS_BUTTONS, '[data-target="').concat(target, '"][data-lastused="true"'));
                     lastUsedButton && lastUsedButton.focus();
