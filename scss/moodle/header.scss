@@ -574,8 +574,10 @@
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
-    line-height: 0.85;
+    line-height: 1;
     letter-spacing: normal;
+    margin-bottom: 0.25rem !important;
+    overflow: visible;
 
     @media(max-width: $size-xl) {
       font-size: 28px;
