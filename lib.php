@@ -53,7 +53,7 @@ function theme_mentor_page_init(moodle_page $page) {
     $page->requires->js_call_amd('theme_mentor/search', 'init');
 
     if ($PAGE->pagetype === 'course-edit') {
-        $page->requires->js_call_amd('theme_mentor/courseformat', 'init', [is_siteadmin()]);
+        $page->requires->js_call_amd('theme_mentor/courseformat', 'init');
     }
 
     if (theme_mentor_is_in_mentor_page()) {
