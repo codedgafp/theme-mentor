@@ -1,0 +1,15 @@
+<div class="popover-region collapsed" data-region="popover-region-messages">
+    <a id="message-drawer-toggle-{{uniqid}}" 
+       class="nav-link popover-region-toggle position-relative icon-no-margin" 
+       href="/message/index.php"
+       role="button">
+        {{#pix}} t/message, core, {{#str}} togglemessagemenu, theme_mentor {{/str}} {{/pix}}
+        <div
+            class="count-container {{^unreadcount}}hidden{{/unreadcount}}"
+            data-region="count-container"
+        >
+            <span aria-hidden="true">{{unreadcount}}</span>
+            <span class="sr-only">{{#str}} unreadconversations, core_message, {{unreadcount}} {{/str}}</span>
+        </div>
+    </a>    
+</div>
