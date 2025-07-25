@@ -15,6 +15,7 @@
 
   @media(max-width: 768px) {
     font-size: 0.7em;
+    padding: 0 1rem;
   }
 
   @media(max-width: 640px) {
@@ -27,10 +28,6 @@
   }
 
   .navbar-toggler {
-    margin-right: 1rem;
-    margin-left: 1rem;
-
-
     @media(max-width: $size-sm) {
       margin-right: 0.5rem;
       margin-left: 0.5rem;
@@ -100,10 +97,76 @@
         width: 90px;
         height: 81px;
       }
+    }
+
+    .navbar-title-subtitle{
+      display: flex;
+      flex-direction: column;
 
       @media(max-width: $size-mobile) {
         display: none;
       }
+
+      .main-title{
+        font-size: 20px;
+        font-weight: 700;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: #383838;
+
+        @media(max-width: 576px) {
+          display: flex;
+          flex-direction: column;
+          padding-left: 20px;
+        }
+      }
+      .sub-title{
+        font-size: 16px;
+        font-weight: 400;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #383838;
+      }
+      #site-type{
+        font-size: .8em;
+        vertical-align: top;
+
+        &.type-local_dev,
+        &.type-dev,
+        &.type-developpement {
+          color: #E18863; 
+        }
+        
+        &.type-qualif,
+        &.type-qualification {
+          color: #7F7FC8;
+        }
+        
+        &.type-preprod,
+        &.type-preproduction,
+        &.type-pre-production {
+          color: #169B62;
+        }
+      }
+    }
+    &:hover{
+      background-color: #ededed;
+    }
+  }
+
+  .custom-header-menu-mobile-view {
+    display: none;
+
+    @media(max-width: 768px) {
+      display: unset;
+    }
+
+    div.d-flex {
+      margin-bottom: 1rem;
     }
 
     .navbar-title-subtitle{
@@ -122,7 +185,6 @@
         @media(max-width: 576px) {
           display: flex;
           flex-direction: column;
-          padding-left: 20px;
         }
       }
       .sub-title{
@@ -289,10 +351,6 @@
     @media (max-width: 768px) {
       display: flex !important;
       margin-left: 0;
-    }
-
-    @media(max-width: 640px) {
-      width: 50%;
     }
 
     &.mentor-links {
@@ -491,7 +549,6 @@
 
     @media (max-width: $size-mobile) {
       flex-wrap: wrap !important;
-      height: $headermobileheight;
     }
 
     .nav-item {
