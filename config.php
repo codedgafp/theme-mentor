@@ -100,7 +100,8 @@ $THEME->javascripts_footer = [
     'trackurls',
     'questionnaire',
     'mod_scorm',
-    'coursemenuicon'
+    'coursemenuicon',
+    'popover-notification'
 ];
 
 $THEME->haseditswitch = true;
