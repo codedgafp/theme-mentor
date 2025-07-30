@@ -681,4 +681,33 @@ class theme_mentor_core_renderer extends core_renderer
         $links.= '</div>';
         return $links;
     }
+    /**
+     * Render disabled managespaces link for RFC and RLF
+     * 
+     */
+    public function navbar() {
+        global $USER;
+        $navbar = $this->page->navbar;
+        $items = $navbar->get_items();
+
+        foreach ($items as $item) {
+            if ($this->has_role_unauthorized_to_managespaces($USER) && $item->text === get_string('managespaces', 'format_edadmin')) {
+                $item->action = null;
+            }
+        }
+        
+        return $this->render_from_template('core/navbar', $navbar);
+    }
+
+    public function has_role_unauthorized_to_managespaces($user): bool {
+        $highestrole = \local_mentor_core\profile_api::get_highest_role_by_user($user->id);
+     
+        $elevatedroles = ['respformation', 'referentlocal', 'reflocalnonediteur'];
+
+        if (!is_object($highestrole) || !isset($highestrole->shortname)) {
+            return false;
+        }
+
+        return in_array($highestrole->shortname, $elevatedroles);
+    }
 }

@@ -549,4 +549,50 @@ class theme_mentor_core_renderer_testcase extends \advanced_testcase {
 
         self::resetAllData();
     }
+
+    /**
+     * Test has_role_unauthorized_to_managespaces
+     *
+     * @covers \theme_mentor_core_renderer::has_role_unauthorized_to_managespaces
+     */
+    public function test_has_role_unauthorized_to_managespaces() {
+
+        global $PAGE, $DB;
+
+        $this->resetAfterTest(true);
+        $this->reset_singletons();
+        $this->init_config();
+		
+		$renderer = new \theme_mentor_core_renderer($PAGE, 'target');
+
+        $user = $this->getDataGenerator()->create_user();
+       
+        $role = $DB->get_record('role', ['shortname' => 'respformation']);
+        if (!$role) {
+            $roleid = create_role('Responsable Formation', 'respformation', 'Rôle de test');
+        } else {
+            $roleid = $role->id;
+        }
+        assign_capability('moodle/course:view', CAP_ALLOW, $roleid, context_system::instance());
+        role_assign($roleid, $user->id, context_system::instance());
+
+        $this->assertTrue($renderer->has_role_unauthorized_to_managespaces($user));
+
+        
+        $user2 = $this->getDataGenerator()->create_user();
+       
+        $role2 = $DB->get_record('role', ['shortname' => 'formateur']);
+        if (!$role2) {
+            $roleid2 = create_role('Administrateur', 'admin', 'Rôle admin');
+        } else {
+            $roleid2 = $role2->id;
+        }
+
+        assign_capability('moodle/course:view', CAP_ALLOW, $roleid2, context_system::instance());
+        role_assign($roleid2, $user2->id, context_system::instance());
+
+        $this->assertFalse($renderer->has_role_unauthorized_to_managespaces($user2));
+
+		self::resetAllData();
+    }
 }
