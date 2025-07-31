@@ -135,13 +135,13 @@ class theme_mentor_core_renderer_testcase extends \advanced_testcase {
         self::assertEquals($renderer->favicon(), $CFG->wwwroot . '/theme/mentor/pix/favicon_dev.ico');
 
         $CFG->sitetype = 'azure_formation';
-        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/_s/boost/theme/1/favicon');
+        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/boost/theme/1/favicon');
 
         $CFG->sitetype = 'azure_hotfix';
         self::assertEquals($renderer->favicon(), $CFG->wwwroot . '/theme/mentor/pix/favicon_preprod.ico');
 
         $CFG->sitetype = 'azure_iso_prod';
-        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/_s/boost/theme/1/favicon');
+        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/boost/theme/1/favicon');
 
         $CFG->sitetype = 'azure_iso_qualification';
         self::assertEquals($renderer->favicon(), $CFG->wwwroot . '/theme/mentor/pix/favicon_qualif.ico');
@@ -165,10 +165,10 @@ class theme_mentor_core_renderer_testcase extends \advanced_testcase {
         self::assertEquals($renderer->favicon(), $CFG->wwwroot . '/theme/mentor/pix/favicon_preprod.ico');
 
         $CFG->sitetype = 'prod';
-        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/_s/boost/theme/1/favicon');
+        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/boost/theme/1/favicon');
 
         $CFG->sitetype = 'production';
-        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/_s/boost/theme/1/favicon');
+        self::assertEquals($renderer->favicon()->out(), $CFG->wwwroot . '/theme/image.php/boost/theme/1/favicon');
 
         $CFG->sitetype = 'qualif';
         self::assertEquals($renderer->favicon(), $CFG->wwwroot . '/theme/mentor/pix/favicon_qualif.ico');
