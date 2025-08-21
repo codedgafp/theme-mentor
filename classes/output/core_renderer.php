@@ -527,10 +527,9 @@ class theme_mentor_core_renderer extends core_renderer
             // Back to the course for activity.
             if (strpos($this->page->url, '/mod/') !== false && $this->page->course->format != 'singleactivity') {
                 $header->hasprevbutton = 1;
-                $header->prevstepurl = (new moodle_url(
-                    '/course/view.php',
-                    ['id' => $this->page->course->id, 'section' => $this->page->cm->sectionnum]
-                ))->out();
+                $header->prevstepurl = (new moodle_url('/course/section.php',
+                                            ['id' => $this->page->cm->sectionid]
+                                        ))->out();
                 $header->prevstetitle = get_string('exittomod', 'theme_mentor');
             }
 

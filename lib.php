@@ -170,9 +170,9 @@ function theme_mentor_get_previous_button() {
     // Back to the course for activity.
     if (strpos($PAGE->url, '/mod/') !== false && $PAGE->course->format != 'singleactivity') {
         $prevbutton = new stdClass();
-        $prevbutton->prevstepurl = (new moodle_url('/course/view.php',
-            ['id' => $PAGE->course->id, 'section' => $PAGE->cm->sectionnum]
-        ))->out(false);
+        $prevbutton->prevstepurl = (new moodle_url('/course/section.php',
+                                        ['id' => $PAGE->cm->sectionid]
+                                    ))->out(false);
         $prevbutton->prevstetitle = get_string('exittomod', 'theme_mentor');
         return $prevbutton;
     }

@@ -77,10 +77,13 @@ class theme_mentor_lib_testcase extends advanced_testcase {
         $forum = $this->getDataGenerator()->create_module('forum', ['course' => $course->id]);
         $cm = get_coursemodule_from_id('forum', $forum->cmid);
 
-        // Set PAGE.
-        $PAGE->set_course($course);
-        $PAGE->set_url('/mod/falsemod');
-        $PAGE->set_cm($cm);
+        $testpage = new moodle_page();
+        $testpage->set_pagelayout('standard');
+        $testpage->set_url('/mod/falsemod');
+        $testpage->set_course($course);
+        $testpage->set_cm($cm);
+
+        $GLOBALS['PAGE'] = $testpage;
 
         // Get previous buttons.
         $previousbutton = theme_mentor_get_previous_button();
@@ -88,7 +91,7 @@ class theme_mentor_lib_testcase extends advanced_testcase {
         self::assertIsObject($previousbutton);
         self::assertObjectHasProperty('prevstepurl', $previousbutton);
         self::assertEquals(
-            $CFG->wwwroot . '/course/view.php?id=' . $course->id . '&section=0',
+            $CFG->wwwroot . '/course/section.php?id=' .$testpage->cm->sectionid,
             $previousbutton->prevstepurl
         );
         self::assertObjectHasProperty('prevstetitle', $previousbutton);
