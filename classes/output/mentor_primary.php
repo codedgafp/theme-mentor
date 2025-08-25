@@ -47,7 +47,6 @@ class mentor_primary extends \core\navigation\output\primary {
         }
 
         $primarynav = $this->get_primary_nav();
-
         $menudata = (object) array_merge($primarynav, $this->get_custom_menu($output));
         $moremenu = new \core\navigation\output\more_menu($menudata, 'navbar-nav', false);
         $mobileprimarynav = array_merge($primarynav, $this->get_custom_menu($output));
@@ -79,19 +78,20 @@ class mentor_primary extends \core\navigation\output\primary {
             'isactive' => strpos($PAGE->url, '/my/') !== false,
             'key' => get_string('dashboard', 'theme_mentor'),
         ];
-
+        
         $context = context_system::instance();
         $can_offer_access = has_capability('local/catalog:offeraccess', $context);
-
-        // Training catalog link.
-        $primary[] = $can_offer_access ? [
-            'title' => get_string('trainingcatalog', 'theme_mentor'),
-            'url' => new \moodle_url('/local/catalog/index.php'),
-            'text' => get_string('trainingcatalog', 'theme_mentor'),
-            'isactive' => strpos($PAGE->url, '/local/catalog/index.php') !== false,
-            'key' => get_string('trainingcatalog', 'theme_mentor'),
-        ] : [];
-
+        if($can_offer_access){
+            // Training catalog link.
+            $primary[] =  [
+                'title' => get_string('trainingcatalog', 'theme_mentor'),
+                'url' => new \moodle_url('/local/catalog/index.php'),
+                'text' => get_string('trainingcatalog', 'theme_mentor'),
+                'isactive' => strpos($PAGE->url, '/local/catalog/index.php') !== false,
+                'key' => get_string('trainingcatalog', 'theme_mentor'),
+            ];
+        }
+        
         if (\local_mentor_core\library_api::user_has_access()) {
             // Library link.
             $primary[] = [
