@@ -686,16 +686,20 @@ class theme_mentor_core_renderer extends core_renderer
      */
     public function navbar() {
         global $USER;
-        $navbar = $this->page->navbar;
-        $items = $navbar->get_items();
 
-        foreach ($items as $item) {
-            if ($this->has_role_unauthorized_to_managespaces($USER) && $item->text === get_string('managespaces', 'format_edadmin')) {
-                $item->action = null;
-            }
-        }
-        
-        return $this->render_from_template('core/navbar', $navbar);
+        if(isloggedin())
+        {
+
+            $navbar = $this->page->navbar;
+            $items = $navbar->get_items();
+
+            foreach ($items as $item) {
+                if ($this->has_role_unauthorized_to_managespaces($USER) && $item->text === get_string('managespaces', 'format_edadmin')) {
+                    $item->action = null;
+                }
+            }    
+            return $this->render_from_template('core/navbar', $navbar);
+        }      
     }
 
     public function has_role_unauthorized_to_managespaces($user): bool {
