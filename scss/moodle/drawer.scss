@@ -161,6 +161,7 @@ body.headroom--pinned {
 #theme_boost-drawers-primary {
   top: 0;
   height: 100%;
+  z-index: 1041;
 
   .drawerheader {
     .drawertoggle {
@@ -170,6 +171,7 @@ body.headroom--pinned {
       i {
         width: 70px;
         color: $maincolor;
+        max-width: none;
 
         &::after {
           content: "Fermer";
