@@ -1,0 +1,14 @@
+
+.btn.btn-icon.icons-collapse-expand {
+  color: $chevron-color;
+  background-color: inherit ;
+  &:hover {
+       outline: inherit;
+    background-color: $chevron-hover ;
+    }
+}
+
+.fa-chevron-down,
+.fa-chevron-right {
+   -webkit-text-stroke: 1px;
+}
