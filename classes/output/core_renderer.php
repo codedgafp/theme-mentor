@@ -713,4 +713,28 @@ class theme_mentor_core_renderer extends core_renderer
 
         return in_array($highestrole->shortname, $elevatedroles);
     }
+
+    /**
+     * Renders the context header for the page.
+     *
+     * @param array $headerinfo Heading information.
+     * @param int $headinglevel What 'h' level to make the heading.
+     * @return string A rendered context header.
+     */
+    public function context_header($headerinfo = null, $headinglevel = 1): string {
+        global $DB;
+
+        $context = $this->page->context;
+        $heading = null;
+        $imagedata = null;
+        $userbuttons = null;
+        $prefix = null;
+
+        if ($context->contextlevel == CONTEXT_COURSE) {
+            $heading = $this->page->course->fullname;
+        }
+
+        $contextheader = new \context_header($heading, $headinglevel, $imagedata, $userbuttons, $prefix);
+        return $this->render($contextheader);
+    }
 }
