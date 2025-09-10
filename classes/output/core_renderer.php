@@ -689,16 +689,35 @@ class theme_mentor_core_renderer extends core_renderer
 
         if(isloggedin())
         {
-
             $navbar = $this->page->navbar;
             $items = $navbar->get_items();
-
+            
+            $course = $this->page->course;
+            if( $course && isset($course->format)){
+                $courseFormat = $course->format;
+                if (!in_array($courseFormat, ['site', 'edadmin'])){
+                    $filtered = [];
+                   
+                    if(!empty($items)) {
+                        $filtered[] = reset($items);
+                    }
+                    foreach($items as $item){
+                        if($course->id == $item->key || isset($filtered[1])){
+                            $filtered[] =  $item;
+                        }
+                    }
+                    $items = $filtered;
+                }
+            }
+                
             foreach ($items as $item) {
                 if ($this->has_role_unauthorized_to_managespaces($USER) && $item->text === get_string('managespaces', 'format_edadmin')) {
                     $item->action = null;
                 }
             }    
-            return $this->render_from_template('core/navbar', $navbar);
+
+           $context['get_items'] = $items;
+            return $this->render_from_template('core/navbar', $context);
         }      
     }
 

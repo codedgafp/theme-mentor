@@ -68,15 +68,6 @@ body[class*="course-"] {
     }
   }
 
-  &:not(.format-edadmin):not(.course-1) {
-
-    #page-navbar {
-      li.breadcrumb-item:nth-child(2) {
-        display: none;
-      }
-    }
-  }
-
   .course-content {
     line-height: 1.75;
     color: $coursetextcolor;
