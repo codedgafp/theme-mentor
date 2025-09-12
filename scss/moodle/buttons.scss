@@ -2,7 +2,7 @@
 .btn.btn-icon.icons-collapse-expand {
   color: $chevron-color;
   background-color: inherit ;
-  &:hover {
+  &:hover, &:focus{
        outline: inherit;
     background-color: $chevron-hover ;
     }
