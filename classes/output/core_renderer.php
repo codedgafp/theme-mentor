@@ -750,7 +750,7 @@ class theme_mentor_core_renderer extends core_renderer
         $prefix = null;
 
         if ($context->contextlevel == CONTEXT_COURSE) {
-            $heading = $this->page->course->fullname;
+            $heading = $this->page->course->shortname;
         }
 
         $contextheader = new \context_header($heading, $headinglevel, $imagedata, $userbuttons, $prefix);
