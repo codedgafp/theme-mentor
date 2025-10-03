@@ -21,6 +21,9 @@ require_once($CFG->dirroot . '/local/mentor_core/api/session.php');
 require_once($CFG->dirroot . '/local/mentor_core/api/training.php');
 require_once($CFG->dirroot . '/local/mentor_core/api/library.php');
 
+use local_mentor_core\entity_api;
+use local_mentor_core\profile_api;
+
 /**
  * Primary navigation renderable
  *
@@ -32,14 +35,16 @@ require_once($CFG->dirroot . '/local/mentor_core/api/library.php');
  * @copyright   2021 onwards Peter Dias
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mentor_primary extends \core\navigation\output\primary {
+class mentor_primary extends \core\navigation\output\primary
+{
     /**
      * Combine the various menus into a standardized output.
      *
      * @param renderer_base|null $output
      * @return array
      */
-    public function export_for_template(?renderer_base $output = null): array {
+    public function export_for_template(?renderer_base $output = null): array
+    {
         global $PAGE;
 
         if (!$output) {
@@ -61,8 +66,9 @@ class mentor_primary extends \core\navigation\output\primary {
         ];
     }
 
-    protected function get_primary_nav($parent = null): array {
-        global $PAGE, $USER;
+    protected function get_primary_nav($parent = null): array
+    {
+        global $PAGE, $USER, $DB;
 
         if ($USER->id === 0) {
             return [];
@@ -76,14 +82,14 @@ class mentor_primary extends \core\navigation\output\primary {
             'url' => new \moodle_url('/my'),
             'text' => get_string('dashboard', 'theme_mentor'),
             'isactive' => strpos($PAGE->url, '/my/') !== false,
-            'key' => get_string('dashboard', 'theme_mentor'),
+            'key' => get_string('dashboard', 'theme_mentor')
         ];
-        
+
         $context = context_system::instance();
         $can_offer_access = has_capability('local/catalog:offeraccess', $context);
-        if($can_offer_access){
+        if ($can_offer_access) {
             // Training catalog link.
-            $primary[] =  [
+            $primary[] = [
                 'title' => get_string('trainingcatalog', 'theme_mentor'),
                 'url' => new \moodle_url('/local/catalog/index.php'),
                 'text' => get_string('trainingcatalog', 'theme_mentor'),
@@ -91,7 +97,7 @@ class mentor_primary extends \core\navigation\output\primary {
                 'key' => get_string('trainingcatalog', 'theme_mentor'),
             ];
         }
-        
+
         if (\local_mentor_core\library_api::user_has_access()) {
             // Library link.
             $primary[] = [
@@ -103,7 +109,7 @@ class mentor_primary extends \core\navigation\output\primary {
             ];
         }
 
-        $highestrole = \local_mentor_core\profile_api::get_highest_role_by_user($USER->id);
+        $highestrole = profile_api::get_highest_role_by_user($USER->id);
 
         // Define roles with "manage entities" button.
         $adminroles = ['admin', 'admindedie'];
@@ -114,8 +120,14 @@ class mentor_primary extends \core\navigation\output\primary {
         // Manage entities links.
         if (is_object($highestrole) && in_array($highestrole->shortname, $adminroles)) {
 
-            $managedentitieswithothercapabilites = \local_mentor_core\entity_api::count_managed_entities(null, false, null, true,
-                is_siteadmin(), true);
+            $managedentitieswithothercapabilites = entity_api::count_managed_entities(
+                null,
+                false,
+                null,
+                true,
+                is_siteadmin(),
+                true
+            );
             $strmanageentities = $managedentitieswithothercapabilites > 1 ? get_string('managemyentities', 'theme_mentor') :
                 get_string('managemyentity', 'theme_mentor');
 
@@ -139,21 +151,19 @@ class mentor_primary extends \core\navigation\output\primary {
                 $trainingcourse = $admincourselist['trainings'];
                 $sessioncourse = $admincourselist['session'];
             } else {
-
                 // Manage trainings.
-                $categories = \local_mentor_core\entity_api::get_categories_with_capability($USER->id, 'local/trainings:manage');
+                $categories = entity_api::get_categories_with_capability($USER->id, 'local/trainings:manage');
                 if (count($categories) > 0) {
                     $maincategoryid = array_key_first($categories);
-                    $trainingcourse = \local_mentor_core\entity_api::get_entity($maincategoryid)->get_edadmin_courses('trainings');
+                    $trainingcourse = entity_api::get_entity($maincategoryid)->get_edadmin_courses('trainings');
                 }
 
                 // Manage sessions.
-                $categories = \local_mentor_core\entity_api::get_categories_with_capability($USER->id, 'local/session:manage');
+                $categories = entity_api::get_categories_with_capability($USER->id, 'local/session:manage');
                 if (count($categories) > 0) {
                     $maincategoryid = array_key_first($categories);
-                    $sessioncourse = \local_mentor_core\entity_api::get_entity($maincategoryid)->get_edadmin_courses('session');
+                    $sessioncourse = entity_api::get_entity($maincategoryid)->get_edadmin_courses('session');
                 }
-
             }
 
             // Manage training link.
@@ -186,9 +196,58 @@ class mentor_primary extends \core\navigation\output\primary {
                 'url' => new \moodle_url('/admin/search.php'),
                 'text' => get_string('administrationsite', 'theme_mentor'),
                 'isactive' => strpos($PAGE->url, '/admin/search.php') !== false,
-                'key' => get_string('administrationsite', 'theme_mentor'),
+                'key' => get_string('administrationsite', 'theme_mentor')
             ];
         }
+
+        $profile = profile_api::get_profile($USER);
+        $entity = entity_api::get_entity($profile->get_main_entity()->id);
+
+        $presentationpage = $entity->get_presentation_page_course();
+        $presentationpageisenabled = $presentationpage !== false && $presentationpage->visible == 1;
+        if ($presentationpageisenabled) {
+            $presentationpageurl = new \moodle_url('/course/view.php', ['id' => $presentationpage->id]);
+
+            $primary[] = [
+                'title' => get_string('presentation', 'theme_mentor'),
+                'url' => $presentationpageurl,
+                'text' => get_string('presentation', 'theme_mentor'),
+                'isactive' => strpos($PAGE->url, $presentationpageurl) !== false,
+                'key' => get_string('presentation', 'theme_mentor'),
+                'classes' => ['primary_nav_ms_auto']
+            ];
+        }
+
+        $contactpagecourse = $entity->get_contact_page_course();
+        $contactpage = $DB->get_record('page', ['course' => $contactpagecourse->id]);
+        $contactpageisenabled = $contactpage !== false && empty($contactpage->name) === false;
+        if ($contactpageisenabled) {
+            $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpage->id]);
+
+            $contactpageprimary = [
+                'title' => get_string('contact', 'theme_mentor'),
+                'url' => $contactpageurl,
+                'text' => get_string('contact', 'theme_mentor'),
+                'isactive' => strpos($PAGE->url, $contactpageurl) !== false,
+                'key' => get_string('contact', 'theme_mentor'),
+            ];
+            if ($presentationpageisenabled === false)
+                $contactpageprimary = array_merge($contactpageprimary, ['classes' => ['primary_nav_ms_auto']]);
+
+            $primary[] = $contactpageprimary;
+        }
+
+        $helppageprimary = [
+            'title' => get_string('help', 'theme_mentor'),
+            'url' => get_config('theme_mentor', 'faq'),
+            'text' => get_string('help', 'theme_mentor'),
+            'isactive' => strpos($PAGE->url, get_config('theme_mentor', 'faq')) !== false,
+            'key' => get_string('help', 'theme_mentor')
+        ];
+        if ($presentationpageisenabled === false && $contactpageisenabled === false)
+            $helppageprimary = array_merge($helppageprimary, ['classes' => ['primary_nav_ms_auto']]);
+
+        $primary[] = $helppageprimary;
 
         return $primary;
     }
@@ -201,7 +260,8 @@ class mentor_primary extends \core\navigation\output\primary {
      * @param renderer_base $output
      * @return array
      */
-    public function get_user_menu(renderer_base $output): array {
+    public function get_user_menu(renderer_base $output): array
+    {
         global $USER;
 
         // Add "user profile" link to user menu after divider.
