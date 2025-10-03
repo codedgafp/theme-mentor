@@ -190,3 +190,18 @@ $string['invalidiosalert'] = 'Nous sommes désolés mais nous rencontrons actuel
 $string['invalidbrowserios'] = 'OS/Navigateur non supporté';
 
 $string['togglemessagemenu'] = 'Ouvrir la messagerie';
+
+$string['infoblockarchivedsession'] = '
+            <div class="mentor-card container-fluid important" style="display: flex; flex-direction: row;">
+                <div class="row">
+                    <div class="col-md-12 col-lg-2 mentor-card-left" style="flex: 0 0 50px;">
+                        <div><i class="fa fa-exclamation-triangle"></i></div>
+                    </div>
+                    <div class="col-lg-10 mentor-card-content" style="flex: 1;">
+                        <h5>Information concernant cette formation</h5>
+                        <p>Cette formation étant archivée, <strong>vous ne pouvez plus ni réaliser les activités, ni faire avancer la barre de suivi, ni obtenir d\'attestation de participation</strong>.
+                        Si vous n\'avez pas pu la terminer, nous vous invitons à consulter l\'offre de formation pour identifier si une nouvelle session est disponible.</p>
+                        <a href="/local/catalog/index.php" role="button" class="btn btn-primary btn-mentor-snippet mt-3 mb-3 card-link">Offre de formation</a>
+                    </div>
+                </div>
+            </div>';

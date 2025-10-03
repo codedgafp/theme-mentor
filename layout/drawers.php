@@ -46,12 +46,31 @@ if ($courseindexopen) {
 $courseindex = false;
 
 $blockshtml = $OUTPUT->blocks('side-pre');
-$hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 
+$hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
+$infoblockhtml = "";
 // If is course.
 if ($PAGE->course && $PAGE->course->id !== SITEID) {
     $training = \local_mentor_core\training_api::get_training_by_course_id($PAGE->course->id);
     $session = \local_mentor_core\session_api::get_session_by_course_id($PAGE->course->id);
+
+    $isarchivedsession = $session ? ($session->status ===  \local_mentor_core\session::STATUS_ARCHIVED) : false;
+    if($isarchivedsession){
+
+        $infoblockhtml = html_writer::start_tag('section', [
+            'class' => 'block block_html card mb-3',
+            'role' => 'complementary',
+            'data-block' => 'html'
+        ]);
+
+        $infoblockhtml .= html_writer::start_tag('div', ['class' => 'card-body']);
+        $infoblockhtml .=  get_string('infoblockarchivedsession', 'theme_mentor');
+        $infoblockhtml .= html_writer::end_tag('div');
+
+        $infoblockhtml .= html_writer::end_tag('section'); 
+        $hasblocks = true;
+    }
+    $blockshtml = $infoblockhtml . $blockshtml;
 
     // If the course is linked to a training or session.
     if ($training || $session) {
