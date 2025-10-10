@@ -51,6 +51,7 @@
   & > div.d-flex:first-child {
     padding-right: 1rem;
     padding-left: 1rem;
+    height: 81px;
 
     @media(max-width: $size-mobile) {
       height: inherit;
