@@ -55,7 +55,6 @@
 
     @media(max-width: $size-mobile) {
       height: inherit;
-      height: -webkit-fill-available;
       padding-right: 5px;
       padding-left: 0;
     }
