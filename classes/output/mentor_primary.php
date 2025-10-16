@@ -201,40 +201,44 @@ class mentor_primary extends \core\navigation\output\primary
         }
 
         $profile = profile_api::get_profile($USER);
-        $entity = entity_api::get_entity($profile->get_main_entity()->id);
+        $presentationpageisenabled = false;
+        $contactpageisenabled = false;
 
-        $presentationpage = $entity->get_presentation_page_course();
-        $presentationpageisenabled = $presentationpage !== false && $presentationpage->visible == 1;
-        if ($presentationpageisenabled) {
-            $presentationpageurl = new \moodle_url('/course/view.php', ['id' => $presentationpage->id]);
+        if ($profile->get_main_entity() !== false) {
+            $entity = entity_api::get_entity($profile->get_main_entity()->id);
+            $presentationpage = $entity->get_presentation_page_course();
+            $presentationpageisenabled = $presentationpage !== false && $presentationpage->visible == 1;
+            if ($presentationpageisenabled) {
+                $presentationpageurl = new \moodle_url('/course/view.php', ['id' => $presentationpage->id]);
 
-            $primary[] = [
-                'title' => get_string('presentation', 'theme_mentor'),
-                'url' => $presentationpageurl,
-                'text' => get_string('presentation', 'theme_mentor'),
-                'isactive' => strpos($PAGE->url, $presentationpageurl) !== false,
-                'key' => get_string('presentation', 'theme_mentor'),
-                'classes' => ['primary_nav_ms_auto']
-            ];
-        }
+                $primary[] = [
+                    'title' => get_string('presentation', 'theme_mentor'),
+                    'url' => $presentationpageurl,
+                    'text' => get_string('presentation', 'theme_mentor'),
+                    'isactive' => strpos($PAGE->url, $presentationpageurl) !== false,
+                    'key' => get_string('presentation', 'theme_mentor'),
+                    'classes' => ['primary_nav_ms_auto']
+                ];
+            }
 
-        $contactpagecourse = $entity->get_contact_page_course();
-        $contactpage = $DB->get_record('page', ['course' => $contactpagecourse->id]);
-        $contactpageisenabled = $contactpage !== false && empty($contactpage->name) === false;
-        if ($contactpageisenabled) {
-            $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpage->id]);
+            $contactpagecourse = $entity->get_contact_page_course();
+            $contactpage = ($contactpagecourse != false) ? $DB->get_record('page', ['course' => $contactpagecourse->id]): false;
+            $contactpageisenabled = $contactpage !== false && empty($contactpage->name) === false;
+            if ($contactpageisenabled) {
+                $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpage->id]);
 
-            $contactpageprimary = [
-                'title' => get_string('contact', 'theme_mentor'),
-                'url' => $contactpageurl,
-                'text' => get_string('contact', 'theme_mentor'),
-                'isactive' => strpos($PAGE->url, $contactpageurl) !== false,
-                'key' => get_string('contact', 'theme_mentor'),
-            ];
-            if ($presentationpageisenabled === false)
-                $contactpageprimary = array_merge($contactpageprimary, ['classes' => ['primary_nav_ms_auto']]);
+                $contactpageprimary = [
+                    'title' => get_string('contact', 'theme_mentor'),
+                    'url' => $contactpageurl,
+                    'text' => get_string('contact', 'theme_mentor'),
+                    'isactive' => strpos($PAGE->url, $contactpageurl) !== false,
+                    'key' => get_string('contact', 'theme_mentor'),
+                ];
+                if ($presentationpageisenabled === false)
+                    $contactpageprimary = array_merge($contactpageprimary, ['classes' => ['primary_nav_ms_auto']]);
 
-            $primary[] = $contactpageprimary;
+                $primary[] = $contactpageprimary;
+            }
         }
 
         $helppageprimary = [
