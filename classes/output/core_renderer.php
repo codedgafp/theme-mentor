@@ -518,7 +518,13 @@ class theme_mentor_core_renderer extends core_renderer
         $header->navbar = $this->navbar();
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
-        $header->headeractions = $this->page->get_header_actions();
+        $actions = $this->page->get_header_actions();
+
+        $header->headeractions = array_filter($actions, function($action) {
+            return strpos((string)$action, 'action-menu') === false;
+        });
+
+        $header->headeractions = array_values($header->headeractions);
 
         $header->hasprevbutton = 0;
 
