@@ -97,7 +97,6 @@ $THEME->javascripts_footer = [
     'header',
     'mod_scorm',
     'popover-notification',
-    'primary_navigation',
     'questionnaire',
     'trackurls',
     'usertours',
