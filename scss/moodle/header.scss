@@ -72,9 +72,15 @@
       }
     }
 
-    .navigation .nav-link {
-      padding-right : .75rem;
-      padding-left : .75rem;
+    .navigation .nav-item{
+      .nav-link {
+        padding-right : .75rem;
+        padding-left : .75rem;
+      }
+
+      &:has(.nav-link.primary_nav_ms_auto) {
+        margin-left: auto;
+      }
     }
   }
 
