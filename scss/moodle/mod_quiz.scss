@@ -74,6 +74,10 @@
       }
     }
   }
+
+  div.qtext > div.clearfix::after {
+    display: none;
+  }
 }
 
 #mod_quiz_navblock {
