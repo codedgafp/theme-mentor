@@ -203,6 +203,7 @@ body.headroom--pinned {
 @media (min-width: 992px) { // cancel boost theme behaviour
   .drawer#theme_boost-drawers-blocks:focus-within {
     position: fixed;
+    z-index: 1050;
   }
 }
 
