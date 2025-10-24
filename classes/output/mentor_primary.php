@@ -225,7 +225,7 @@ class mentor_primary extends \core\navigation\output\primary
             $contactpage = ($contactpagecourse != false) ? $DB->get_record('course_modules', ['course' => $contactpagecourse->id]): false;
             $contactpageisenabled = $contactpage !== false &&  $contactpagecourse->visible == 1;
             if ($contactpageisenabled) {
-                $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpage->id]);
+                $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpagecourse->id]);
 
                 $contactpageprimary = [
                     'title' => get_string('contact', 'theme_mentor'),
