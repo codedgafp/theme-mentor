@@ -214,8 +214,8 @@
 </div>
 
 {{#js}}
-    require(['theme_mentor/comeback_to_section'], function(ComebackToSection) {
-        ComebackToSection.init("{{ format }}", {{ sectionreturn }});
+    require(['theme_boostplus/comeback_to_section'], function(ComebackToSection) {
+    ComebackToSection.init("{{format}}", M.cfg.courseId, {{#singlesection}}{{id}}{{/singlesection}}{{^singlesection}}null{{/singlesection}});
     });
 
     require(['core_courseformat/local/content'], function(component) {
