@@ -3,7 +3,7 @@ $(document).ready(function () {
     const chevronDown = '<i class="collapse-chevron fas fa-chevron-down" aria-hidden="true"></i>'
     const chevronUp = '<i class="collapse-chevron fas fa-chevron-up" aria-hidden="true"></i>'
     // Set aria-expanded to all card-header on the page.
-    $('.card-header').each(function () {
+    $('body .mentor-accordion .card-header').each(function () {
         if ($(this).hasClass('opened')) {
             $(this).attr('aria-expanded', "true");
             $('.header-right', this).html(chevronUp);
@@ -72,7 +72,7 @@ $(document).ready(function () {
         }
     });
 
-    $('body').on('click', '.card-header', function (event) {
+    $('body .mentor-accordion').on('click', '.card-header', function (event) {
         event.preventDefault();
 
         // When Collapse isn't in the atto snippet editor
