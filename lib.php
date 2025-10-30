@@ -168,7 +168,7 @@ function theme_mentor_get_previous_button() {
     }
 
     // Back to the course for activity.
-    if (strpos($PAGE->url, '/mod/') !== false && $PAGE->course->format != 'singleactivity') {
+    if (strpos($PAGE->url, '/mod/') !== false && $PAGE->course->format != 'singleactivity' && $PAGE->cm !== null ) {
         $prevbutton = new stdClass();
         $prevbutton->prevstepurl = (new moodle_url('/course/section.php',
                                         ['id' => $PAGE->cm->sectionid]

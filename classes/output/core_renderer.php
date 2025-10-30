@@ -529,9 +529,8 @@ class theme_mentor_core_renderer extends core_renderer
         $header->hasprevbutton = 0;
 
         if ($this->page->has_set_url()) {
-
             // Back to the course for activity.
-            if (strpos($this->page->url, '/mod/') !== false && $this->page->course->format != 'singleactivity') {
+            if (strpos($this->page->url, '/mod/') !== false && $this->page->course->format != 'singleactivity' && $this->page->cm !== null) { 
                 $header->hasprevbutton = 1;
                 $header->prevstepurl = (new moodle_url('/course/section.php',
                                             ['id' => $this->page->cm->sectionid]
