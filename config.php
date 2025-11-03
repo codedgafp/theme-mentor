@@ -102,6 +102,7 @@ $THEME->javascripts_footer = [
     'usertours',
     'video',
     'search',
+    'h5p',
 ];
 
 $THEME->haseditswitch = true;
