@@ -365,7 +365,8 @@ input[type="radio"] {
   border: none !important;
 }
 
-.dropdown-item:hover.text-danger {
+.dropdown-item:hover.text-danger,
+.dropdown-item:focus.text-danger {
   color: #ca3120 !important;
 }
 
