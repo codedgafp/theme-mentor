@@ -418,12 +418,6 @@
 
       a {
         color: $coursetextcolor !important;
-
-        &:focus {
-          background: transparent !important;
-          -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-        }
       }
     }
 
