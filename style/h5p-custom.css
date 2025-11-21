@@ -1,0 +1,4 @@
+/* Hide H5P tooltips on buttons */
+.h5p-tooltip {
+    display: none !important;
+}
