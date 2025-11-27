@@ -209,21 +209,29 @@ class mentor_primary extends \core\navigation\output\primary
             $presentationpage = $entity->get_presentation_page_course();
             $presentationpageisenabled = $presentationpage !== false && $presentationpage->visible == 1;
             if ($presentationpageisenabled) {
-                $presentationpageurl = new \moodle_url('/course/view.php', ['id' => $presentationpage->id]);
+                if (in_array($presentationpage->format, ['weeks', 'topics', 'tiles'])) {
+                    $coursesections = array_values($DB->get_records('course_sections', ['course' => $presentationpage->id]));
+                    $presentationpageurls = array_map(fn($coursesection): \core\url => new \moodle_url('/course/section.php', ['id' => $coursesection->id]), $coursesections);
+                    $presentationpageurl = current($presentationpageurls);
+                    $isactive = array_filter($presentationpageurls, fn($coursesectionurl): bool|int => $PAGE->url == $coursesectionurl);
+                } else {
+                    $presentationpageurl = new \moodle_url('/course/view.php', ['id' => $presentationpage->id]);
+                    $isactive = strpos($PAGE->url, $presentationpageurl) !== false;
+                }
 
                 $primary[] = [
                     'title' => get_string('presentation', 'theme_mentor'),
                     'url' => $presentationpageurl,
                     'text' => get_string('presentation', 'theme_mentor'),
-                    'isactive' => strpos($PAGE->url, $presentationpageurl) !== false,
+                    'isactive' => $isactive,
                     'key' => get_string('presentation', 'theme_mentor'),
                     'classes' => ['primary_nav_ms_auto']
                 ];
             }
 
             $contactpagecourse = $entity->get_contact_page_course();
-            $contactpage = ($contactpagecourse != false) ? $DB->get_record('course_modules', ['course' => $contactpagecourse->id]): false;
-            $contactpageisenabled = $contactpage !== false &&  $contactpagecourse->visible == 1;
+            $contactpagecoursemodule = ($contactpagecourse != false) ? $DB->get_record('course_modules', ['course' => $contactpagecourse->id]) : false;
+            $contactpageisenabled = $contactpagecoursemodule !== false &&  $contactpagecourse->visible == 1;
             if ($contactpageisenabled) {
                 $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpagecourse->id]);
 
