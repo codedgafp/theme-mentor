@@ -410,6 +410,14 @@
 
   #nav-notification-popover-container {
 
+    .popover-region-header-container {
+      height: 37px;
+      line-height: 32px;
+      .popover-region-header-text {
+        line-height: 36px;
+      }
+    }
+
     .popover-region-content,
     .popover-region-header-actions,
     .popover-region-seeall-text,
