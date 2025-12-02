@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -205,17 +206,23 @@ class mentor_primary extends \core\navigation\output\primary
         $contactpageisenabled = false;
 
         if ($profile->get_main_entity() !== false) {
+            // Check if the presentationpage is enabled and can be displayed
             $entity = entity_api::get_entity($profile->get_main_entity()->id);
             $presentationpage = $entity->get_presentation_page_course();
             $presentationpageisenabled = $presentationpage !== false && $presentationpage->visible == 1;
             if ($presentationpageisenabled) {
+                $presentationpageurl = $entity->get_presentation_page_url();
+
+                // If the course format may include section
                 if (in_array($presentationpage->format, ['weeks', 'topics', 'tiles'])) {
-                    $coursesections = array_values($DB->get_records('course_sections', ['course' => $presentationpage->id]));
-                    $presentationpageurls = array_map(fn($coursesection): \core\url => new \moodle_url('/course/section.php', ['id' => $coursesection->id]), $coursesections);
-                    $presentationpageurl = current($presentationpageurls);
-                    $isactive = array_filter($presentationpageurls, fn($coursesectionurl): bool|int => $PAGE->url == $coursesectionurl);
+                    $coursesections = $DB->get_records('course_sections', ['course' => $presentationpage->id], 'section ASC');
+                    $presentationpageurls = array_map(
+                        fn($coursesection): \core\url => new \moodle_url('/course/section.php', ['id' => $coursesection->id]),
+                        $coursesections
+                    );
+                    $isactive = array_filter($presentationpageurls, fn($coursesectionurl): bool => $PAGE->url == $coursesectionurl);
+                // For other course formats
                 } else {
-                    $presentationpageurl = new \moodle_url('/course/view.php', ['id' => $presentationpage->id]);
                     $isactive = strpos($PAGE->url, $presentationpageurl) !== false;
                 }
 
@@ -229,6 +236,7 @@ class mentor_primary extends \core\navigation\output\primary
                 ];
             }
 
+            // Check if the contact page is enabled and can be displayed
             $contactpagecourse = $entity->get_contact_page_course();
             $contactpagecoursemodule = ($contactpagecourse != false) ? $DB->get_record('course_modules', ['course' => $contactpagecourse->id]) : false;
             $contactpageisenabled = $contactpagecoursemodule !== false &&  $contactpagecourse->visible == 1;
