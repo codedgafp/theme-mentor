@@ -365,12 +365,16 @@ input[type="radio"] {
   border: none !important;
 }
 
-.dropdown-item:hover.text-danger,
-.dropdown-item:focus.text-danger {
-  color: #ca3120 !important;
+.moodle-actionmenu {
+  .dropdown-item.text-danger,
+  .dropdown-item:hover.text-danger,
+  .dropdown-item:focus.text-danger {
+    color: #ca3120 !important;
+  }
 }
 
 .dropdown-item {
+  color: #1e1e1e !important;
   white-space: unset !important;
 
   &:hover,
