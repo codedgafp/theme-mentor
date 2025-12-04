@@ -238,8 +238,8 @@ class mentor_primary extends \core\navigation\output\primary
 
             // Check if the contact page is enabled and can be displayed
             $contactpagecourse = $entity->get_contact_page_course();
-            $contactpagecoursemodule = ($contactpagecourse != false) ? $DB->get_record('course_modules', ['course' => $contactpagecourse->id]) : false;
-            $contactpageisenabled = $contactpagecoursemodule !== false &&  $contactpagecourse->visible == 1;
+            $contactpageactivecoursemodule = $DB->get_record('course_modules', ['course' => $contactpagecourse->id, 'visible' => 1]);
+            $contactpageisenabled = $contactpageactivecoursemodule !== false;
             if ($contactpageisenabled) {
                 $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpagecourse->id]);
 
@@ -247,7 +247,7 @@ class mentor_primary extends \core\navigation\output\primary
                     'title' => get_string('contact', 'theme_mentor'),
                     'url' => $contactpageurl,
                     'text' => get_string('contact', 'theme_mentor'),
-                    'isactive' => strpos($PAGE->url, $contactpageurl) !== false,
+                    'isactive' => $PAGE->course->id == $contactpagecourse->id,
                     'key' => get_string('contact', 'theme_mentor'),
                 ];
                 if ($presentationpageisenabled === false)
