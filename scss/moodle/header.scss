@@ -105,6 +105,14 @@
       }
     }
 
+    .header-logo-mentor {
+      margin: 0 1rem;
+      img {
+        width: unset;
+        height: unset;
+      }
+    }
+
     .navbar-title-subtitle{
       display: flex;
       flex-direction: column;
