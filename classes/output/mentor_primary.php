@@ -220,6 +220,8 @@ class mentor_primary extends \core\navigation\output\primary
                         fn($coursesection): \core\url => new \moodle_url('/course/section.php', ['id' => $coursesection->id]),
                         $coursesections
                     );
+                    $presentationpagecourseurl = new \moodle_url('/course/view.php', ['id' => $presentationpage->id]);
+                    $presentationpageurls = array_merge($presentationpageurls, [$presentationpagecourseurl]);
                     $isactive = array_filter($presentationpageurls, fn($coursesectionurl): bool => $PAGE->url == $coursesectionurl);
                 // For other course formats
                 } else {
