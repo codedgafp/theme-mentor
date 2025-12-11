@@ -44,4 +44,24 @@ class core_h5p_renderer extends \core_h5p\output\renderer {
             'version' => '?ver=' . $CFG->themerev,
         ];
     }
+
+    /**
+     * Alter which scripts are loaded for H5P.
+     *
+     * @param \stdClass[] $scripts List of scripts that will be loaded
+     * @param array $libraries Array of libraries indexed by the library's machineName
+     * @param string $embedtype Possible values: div, iframe, external, editor
+     */
+    public function h5p_alter_scripts(&$scripts, array $libraries, string $embedtype) {
+        global $CFG;
+
+        // Call parent method.
+        parent::h5p_alter_scripts($scripts, $libraries, $embedtype);
+
+        // Inject JavaScript to remove title attributes from H5P elements.
+        $scripts[] = (object) [
+                'path' => (new \moodle_url('/theme/mentor/javascript/h5p-hide-tooltips.js'))->out(),
+                'version' => '?ver=' . $CFG->themerev,
+        ];
+    }
 }
