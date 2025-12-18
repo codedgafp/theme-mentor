@@ -667,21 +667,37 @@ class theme_mentor_core_renderer extends core_renderer
     public function render_custom_static_head_links(): string {
         global $PAGE;
         $links = '<div class="custom-static-head-links-group">';
-        if ($PAGE->url && strpos($PAGE->url->get_path(), 'login/index.php') && !isloggedin() || isguestuser()) {
+        if (($PAGE->url && strpos($PAGE->url->get_path(), 'login/index.php') 
+            ||$PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/index.php') 
+            || $PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/pages/training.php') 
+            || $PAGE->url && strpos($PAGE->url->get_path(), '/local/staticpage/view.php?page=ensavoirplus')) && !isloggedin() || isguestuser()) {
             
             $openli = '<li class="nav-item">';
             $closeli = '</li>';
             
             $catalogicone = '<i class="fa fa-list" aria-hidden="true"></i>';
             $cataloglabel = get_string('discovertrainingsoffer', 'theme_mentor');
-            $cataloglink = $openli . '<a href="/offre" class="nav-link fr-btn fr-icon-file-text-line custom-static-head-links align-items-center">'. $catalogicone . ' ' . $cataloglabel . '</a>' . $closeli;
+            $catalogActivClass = ($PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/index.php')) ? 'active-catalog-link' : '';
+            $cataloglink = $openli . '<a href="/offre" class="nav-link fr-btn fr-icon-file-text-line custom-static-head-links align-items-center '. $catalogActivClass . '">'. $catalogicone . ' ' . $cataloglabel . '</a>' . $closeli;
             $links .= $cataloglink;
 
-            $abouticone = '<i class="fa fa-question-circle-o ms-2" aria-hidden="true"></i> ';
+            $abouticone = '<img src="' . $PAGE->theme->image_url('icon_mentor', 'theme_mentor') . '" alt="" class="icon"> ';
             $aboutlabel = get_string('about', 'theme_mentor');
-            $aboutlink = $openli . '<a href="/local/staticpage/view.php?page=ensavoirplus" class="nav-link custom-static-head-links">'. $abouticone . ' ' . $aboutlabel . ' </a>' . $closeli;
-            $links .= $aboutlink;   
+            $aboutActivClass = ($PAGE->url && strpos($PAGE->url->get_path(), '/local/staticpage/view.php?page=ensavoirplus')) ? 'active-catalog-link' : '';
+            $aboutlink = $openli . '<a href="/local/staticpage/view.php?page=ensavoirplus" class="nav-link custom-static-head-links '. $aboutActivClass .'">'. $abouticone . ' ' . $aboutlabel . ' </a>' . $closeli;
+            $links .= $aboutlink;  
+            if (($PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/index.php') 
+                || $PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/pages/training.php')
+                || $PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/pages/training.php')
+                || $PAGE->url && strpos($PAGE->url->get_path(), '/local/staticpage/view.php?page=ensavoirplus')) && !isloggedin() || isguestuser()) {
+            
+                $loginicone = '<i class="fa fa-user-circle" aria-hidden="true"></i>';
+                $loginlabel = get_string('loginheader', 'theme_mentor');
+                $loginlink = $openli . '<a href="/login/index.php" class="nav-link fr-btn fr-icon-login custom-static-head-links align-items-center">'. $loginicone . ' ' . $loginlabel . '</a>' . $closeli;
+                $links .= $loginlink;
+            }
         }
+        
         $links.= '</div>';
         return $links;
     }

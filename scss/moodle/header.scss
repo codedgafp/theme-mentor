@@ -400,6 +400,11 @@
       }
 
       li.nav-item {
+
+        img.icon {
+          width: unset;
+          height: unset;
+        }
         a {
           color: $maincolor !important;
           font-weight: 500;
@@ -722,4 +727,27 @@ body.notloggedin,
   display: inline-flex;
 }
 
+}
+
+
+.custom-static-head-links {
+  position: relative;         
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                  
+  padding: 4px 8px;           
+  color: #0f6cbf;            
+  text-decoration: none;
+}
+
+.custom-static-head-links.active-catalog-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -27px;
+    width: 155px;
+    height: 3px;
+    background-color: #0f6cbf;
+    border-radius: 2px;
 }

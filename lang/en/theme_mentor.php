@@ -45,6 +45,7 @@ $string['presentation'] = 'Présentation de mon espace de formation';
 $string['contact'] = 'Contact';
 $string['help'] = 'Aide';
 $string['login'] = 'S\'identifier';
+$string['loginheader'] = 'Se connecter';
 $string['forgotpassword'] = 'Mot de passe oublié ?';
 $string['rememberme'] = 'Se souvenir de moi';
 $string['signup'] = 'Créer mon compte';
@@ -57,7 +58,7 @@ $string['exittomod'] = 'Sortir de l\'activité';
 
 // Mentor theme.
 $string['mentorgeneralsettings'] = 'Paramètres thème Mentor';
-$string['about'] = 'En savoir plus sur Mentor';
+$string['about'] = 'Découvrir Mentor';
 $string['about_footer'] = 'En savoir plus';
 $string['about_desc'] = 'Lien vers la page "En savoir plus"';
 $string['legalnotice'] = 'Mentions légales';
@@ -173,7 +174,7 @@ $string['agentconnectbuttontext'] = 'S’identifier avec <span>AgentConnect</spa
 
 $string['rgpdmentions']
     = '<a href="{$a->ensavoirplusurl}">La DGAFP et les partenaires engagés dans le programme MENTOR</a> mettent en œuvre un traitement de données à caractère personnel ayant pour objet la gestion d’une offre de formation pour les agents de l’Etat par la création d’une plateforme interministérielle, la mise à disposition d’un espace de formation par chaque partenaire à ses propres agents ainsi que la réalisation d’études et de statistiques. Conformément au Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l\'égard du traitement des données à caractère personnel et à la libre circulation de ces données vous bénéficiez d\'un droit d’accès, de rectification, de limitation et d’opposition. Pour en savoir plus sur la gestion de vos données à caractère personnel et l’exercice de vos droits, vous pouvez consulter la <a href="{$a->donneespersonnellesurl}">politique de confidentialité</a>.';
-$string['discovertrainingsoffer'] = 'Découvrir l\'offre de formation';
+$string['discovertrainingsoffer'] = 'Offre de formation';
 
 // TODO: Translate.
 $string['totop'] = 'Go to top';
