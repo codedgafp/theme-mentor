@@ -54,6 +54,12 @@ class verify_email_form extends \moodleform {
         $mform->addElement('text', 'email', get_string('formemail', 'theme_mentor'), ['size' => 40]);
         $mform->setType('email', \core_user::get_property_type('email'));
         $mform->addRule('email', get_string('formemptyemail', 'theme_mentor'), 'required');
+        
+        $mform->addElement('html', \html_writer::tag(
+            'static',
+            get_string('formemailexample', 'theme_mentor'),
+            ['id' => 'id_email_help', 'class' => 'form-text text-muted']
+        ));
 
         $this->add_action_buttons();
     }

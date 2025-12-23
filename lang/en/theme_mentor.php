@@ -125,6 +125,7 @@ $string['formnotallowedemail']
     = 'Adresse mél professionnelle non autorisée.';
 $string['formexistemail']
     = 'Cette adresse est déjà enregistrée. Vous avez peut-être créé un compte auparavant ? <a href="{$a}">Récupérer un nom ou un mot de passe oublié.</a>';
+$string['formemailexample'] = 'Exemple : prenom.nom@example.com';
 $string['formpassword'] = 'Mot de passe';
 $string['formemptypassword'] = 'Le mot de passe ne peut pas être vide.';
 $string['formpasswordinformation']

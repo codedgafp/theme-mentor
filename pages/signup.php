@@ -54,6 +54,7 @@ $PAGE->navbar->add(get_string('checkeligibity', 'theme_mentor'), new moodle_url(
 $PAGE->navbar->add(get_string('createaccount', 'theme_mentor'));
 $sitename = format_string($SITE->fullname);
 
+$PAGE->requires->js_call_amd('theme_mentor/password_unmask_on_error', 'init');
 // Get form.
 $mform = new \theme_mentor\signup_form($FULLME, ['email' => $email]);
 

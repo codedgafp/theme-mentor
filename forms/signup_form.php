@@ -83,7 +83,11 @@ class signup_form extends \moodleform {
         $mform->setType('email', \core_user::get_property_type('email'));
         $mform->addRule('email', get_string('formemptyemail', 'theme_mentor'), 'required');
         $mform->setDefault('email', $this->email);
-
+        $mform->addElement('html', \html_writer::tag(
+            'static',
+            get_string('formemailexample', 'theme_mentor'),
+            ['id' => 'id_email_help', 'class' => 'form-text text-muted']
+        ));
         // Professional email address confirm.
         $mform->addElement('text', 'email2', get_string('formemailconfirm', 'theme_mentor'), ['size' => 40]);
         $mform->setType('email2', \core_user::get_property_type('email'));
