@@ -158,4 +158,6 @@ if ($ADMIN->fulltree) {
     $settings->add($personaldatasetting);
     $settings->add($agentconnectidentifiersetting);
     $settings->add($rizomofooterlinksetting);
+
+    $ADMIN->add('themes', $settings);
 }
