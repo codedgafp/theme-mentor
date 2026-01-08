@@ -240,7 +240,7 @@ class mentor_primary extends \core\navigation\output\primary
 
             // Check if the contact page is enabled and can be displayed
             $contactpagecourse = $entity->get_contact_page_course();
-            $contactpageactivecoursemodule = $DB->get_record('course_modules', ['course' => $contactpagecourse->id, 'visible' => 1]);
+            $contactpageactivecoursemodule = (isset( $contactpagecourse->id)) ? $DB->get_record('course_modules', ['course' => $contactpagecourse->id, 'visible' => 1]) : false;
             $contactpageisenabled = $contactpageactivecoursemodule !== false;
             if ($contactpageisenabled) {
                 $contactpageurl = new \moodle_url('/course/view.php', ['id' => $contactpagecourse->id]);

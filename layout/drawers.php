@@ -88,7 +88,7 @@ if ($PAGE->course && $PAGE->course->id !== SITEID) {
         if (theme_mentor_is_in_mentor_page()) {
             $entity = \local_mentor_core\entity_api::get_entity($PAGE->category->parent);
             $presentationpage = $entity->get_presentation_page_course();
-            if ($presentationpage->id === $PAGE->course->id) {
+            if ($presentationpage && $presentationpage->id === $PAGE->course->id) {
                 // Open block drawer.
                 $blockdraweropen = true;
                 $isinpresentationpage = true;
