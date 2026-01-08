@@ -129,7 +129,7 @@ $string['formemailexample'] = 'Exemple : prenom.nom@example.com';
 $string['formpassword'] = 'Mot de passe';
 $string['formemptypassword'] = 'Le mot de passe ne peut pas être vide.';
 $string['formpasswordinformation']
-    = 'Le mot de passe doit comporter au moins 12 caractère(s), au moins 1 chiffre(s), au moins 1 minuscule(s), au moins 1 majuscule(s), au moins 1 caractère(s) non-alphanumérique(s) tels que *,- ou #';
+    = '<p>Le mot de passe doit comporter au moins 12 caractère(s), au moins 1 chiffre(s), au moins 1 minuscule(s), au moins 1 majuscule(s), au moins 1 caractère(s) non-alphanumérique(s) tels que *,- ou #</p>';
 $string['formpasswordnotmatch'] = 'Ces adresses méls professionnelles ne correspondent pas. Veuillez réessayer.';
 $string['formfirstname'] = 'Prénom';
 $string['formemptyfirstname'] = 'Le prénom ne peut pas être vide.';
@@ -147,10 +147,10 @@ $string['formstatus'] = 'Statut';
 $string['formcategory'] = 'Catégorie**';
 $string['formmainentity'] = 'Entité de rattachement principale';
 $string['formmainentityinformation']
-    = "L'entité de rattachement principale est automatiquement complétée selon votre domaine de messagerie.<br>Ce rattachement vous permettra d'accéder à des formations dédiées aux agents de votre entité.";
+    = "<p>L'entité de rattachement principale est automatiquement complétée selon votre domaine de messagerie.<br>Ce rattachement vous permettra d'accéder à des formations dédiées aux agents de votre entité.</p>";
 $string['formsecondaryentities'] = 'Entité(s) de rattachement secondaire(s)';
 $string['formsecondaryentitiesinformation']
-    = 'Pour enrichir votre offre de formation, vous pouvez choisir une ou plusieurs entités de rattachement secondaires qui correspondent à vos problématiques professionnelles actuelles. Ces choix peuvent être modifiés à tout moment en éditant votre profil.';
+    = '<p>Pour enrichir votre offre de formation, vous pouvez choisir une ou plusieurs entités de rattachement secondaires qui correspondent à vos problématiques professionnelles actuelles. Ces choix peuvent être modifiés à tout moment en éditant votre profil.</p>';
 $string['formattachmentstructure'] = 'Structure de rattachement';
 $string['formaffectation'] = 'Affectation';
 $string['formregion'] = 'Région';
@@ -158,7 +158,6 @@ $string['formdepartment'] = 'Département';
 $string['formtown'] = 'Ville';
 $string['formtsignupinformation']
     = '<p class="signup-form-information">Ce formulaire comprend des champs requis, marqués <i class="icon fa fa-exclamation-circle text-danger fa-fw " title="Requis" aria-label="Requis"></i><br>Les données marquées** seront exploitées uniquement pour un usage statistique anonyme de manière à permettre l\'amélioration continue des contenus de la plateforme.<br>En cas d\'évolution de votre situation professionnelle, vous pourrez modifier ultérieurement toutes les données saisies ci-dessous en éditant votre profil Mentor.</p>';
-
 $string['or'] = 'Ou';
 $string['agentconnectidentifier'] = 'Plugin Agent connect';
 $string['agentconnectidentifier_desc'] = 'Identifiant du plugin d\'Agent connect';

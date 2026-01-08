@@ -205,7 +205,7 @@ class signup_form extends \moodleform {
                     '<br><p>
                     En continuant, vous confirmez avoir lu et accepté les <a href="' . $legalmentionurl . '" target="_blank" rel="help opener">' . get_string('legalnotice', 'theme_mentor') . '</a>
                      et la page de gestion des <a href="' . $personaldataurl . '" class="" target="_blank" rel="help opener">' .get_string('personaldata', 'theme_mentor') .'</a>.
-                     <p>');
+                     </p>');
         }
 
 
