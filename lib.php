@@ -286,3 +286,29 @@ function theme_mentor_is_in_mentor_page() {
 
     return true;
 }
+
+/**
+ * Register user preferences for the theme.
+ *
+ * This function is called by Moodle to register user preferences that can be set via web services.
+ *
+ * @return array Array of user preference definitions
+ */
+function theme_mentor_user_preferences() {
+    $preferences = [];
+
+    // Register pattern for comeback to section preferences.
+    // Matches: theme_mentor_course_{courseid}_lastsection
+    $preferences['/^theme_mentor_course_\d+_lastsection$/'] = [
+            'type' => PARAM_INT,
+            'null' => NULL_ALLOWED,
+            'default' => null,
+            'isregex' => true,
+            'permissioncallback' => function($user, $preferencename) {
+                // Allow users to set their own comeback to section preference
+                return \core_user::is_current_user($user);
+            },
+    ];
+
+    return $preferences;
+}

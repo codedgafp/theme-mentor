@@ -3,8 +3,8 @@
  *
  * @module theme_mentor/comeback_to_section
  */
-define(['jquery'],
-    function ($) {
+define(['jquery', 'core/ajax', 'core/notification'],
+    function ($, Ajax, Notification) {
         return {
             'init': function (format, courseIdParam, sectionId) {
                 // Prepare the variable that will contain the redirection URL,
@@ -12,28 +12,45 @@ define(['jquery'],
                 let URL = null;
                 let courseId = courseIdParam;
 
-                // Prepare key name in local storage.
-                const localStorageKeyElements = {
-                    course: "mdl-topics-course-",
-                    lastSection: "-lastSecId",
+                // Prepare preference name for user preferences.
+                const getPreferenceName = function () {
+                    return `theme_mentor_course_${courseId}_lastsection`;
                 };
 
-                // Defines the key name in local storage
-                const encodeLastVistedSectionKeyName = function () {
-                    return `${localStorageKeyElements.course}${courseId}${localStorageKeyElements.lastSection}`;
-                };
-
-                // Stock in local storage the ID of the last section visited.
+                // Save the ID of the last section visited to user preferences.
                 const setLastVisitedSection = function () {
-                    localStorage.removeItem(encodeLastVistedSectionKeyName());
                     if (sectionId) {
-                        localStorage.setItem(encodeLastVistedSectionKeyName(), sectionId.toString());
+                        Ajax.call([{
+                            methodname: 'core_user_set_user_preferences',
+                            args: {
+                                preferences: [
+                                    {
+                                        name: getPreferenceName(),
+                                        value: sectionId.toString(),
+                                        userid: 0  // 0 = current user
+                                    }
+                                ]
+                            }
+                        }])[0].fail(Notification.exception);
                     }
                 };
 
-                // Retrieves the ID of the last section visited.
-                const getLastVisitedSection = function () {
-                    return localStorage.getItem(encodeLastVistedSectionKeyName());
+                // Retrieves the ID of the last section visited from user preferences.
+                const getLastVisitedSection = function (callback) {
+                    Ajax.call([{
+                        methodname: 'core_user_get_user_preferences',
+                        args: {
+                            name: getPreferenceName()
+                        }
+                    }])[0].done(function(response) {
+                        if (response.preferences && response.preferences.length > 0) {
+                            callback(response.preferences[0].value);
+                        } else {
+                            callback(null);
+                        }
+                    }).fail(function() {
+                        callback(null);
+                    });
                 }
 
                 // Retrieves the pathname of the URL from which the user came.
@@ -66,26 +83,24 @@ define(['jquery'],
                 section visited. This step prevents the page from reloading even
                 if the user is in a course section.
                 */
-                const comebackToCourse = function (referrerPathname) {
+                const comebackToCourse = function (referrerPathname, lastSectionId) {
                     // Dynamically retrieves information for building the
                     // redirection URL
                     let originUrl = document.location.origin;
                     let pathnameUrl = document.location.pathname;
 
-                    // Building the redirect URL using sectionid parameter (works with Moodle 4.5)
-                    // This redirects to course/view.php with the section ID
-                    let courseViewPath = pathnameUrl.includes('/course/section.php')
-                        ? pathnameUrl.replace('/course/section.php', '/course/view.php')
-                        : pathnameUrl;
-                    let locationUrl = `${originUrl}${courseViewPath}?id=${courseId}&sectionid=${getLastVisitedSection()}`;
+                    // Building the redirect URL to course/section.php with the section ID
+                    let locationUrl = `${originUrl}/course/section.php?id=${lastSectionId}`;
 
-                    // Checks that the user is not on a course section page
-                    if (referrerPathname != pathnameUrl) {
-                        URL = locationUrl;
-                        return true;
+                    // Don't redirect if:
+                    // 1. User is already on the same page type
+                    // 2. User is coming from a section page (they want to go back to main course view)
+                    if (referrerPathname == pathnameUrl || referrerPathname.includes('/course/section.php')) {
+                        return false;
                     }
 
-                    return false;
+                    URL = locationUrl;
+                    return true;
                 }
 
                 // If the course format is Topics and we have a course ID
@@ -94,17 +109,17 @@ define(['jquery'],
                     let referrer = $('<a>', { href: document.referrer })[0];
                     let referrerPathname = referrer.pathname;
 
-                    // If the key and value of the last section are present in
-                    // the local storage and a redirection is required, the user
-                    // is sent to the last section visited only if not currently viewing a section.
-                    // This handles course/view.php?section=X, course/view.php?sectionid=X, and course/section.php?id=X
-
-                    // Only redirect if not already viewing a section and we have a stored section
-                    if (!isViewingSection() && getLastVisitedSection() != null && comebackToCourse(referrerPathname)) {
-                        window.location.href = URL;
-                        URL = null;
+                    // If not currently viewing a section, retrieve the last visited section and redirect if needed
+                    if (!isViewingSection()) {
+                        getLastVisitedSection(function(lastSectionId) {
+                            if (lastSectionId != null && comebackToCourse(referrerPathname, lastSectionId)) {
+                                window.location.href = URL;
+                                URL = null;
+                            }
+                        });
                     }
 
+                    // Save the current section as the last visited section
                     setLastVisitedSection();
                 }
             }
