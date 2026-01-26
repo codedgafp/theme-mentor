@@ -12,9 +12,9 @@ if (regionElementSelect.length) {
     fieldsLink(regionElementSelect, departmentElementSelect, regions);
 }
 
-// Force ldap_sync auth.
-if ($('#id_auth option[value="ldap_syncplus"]').length > 0) {
-    $('#id_auth').val('ldap_syncplus').css('pointer-events', 'none').css('background', '#ccc');
+// Force oidc auth.
+if ($('#id_auth option[value="oidc"]').length > 0) {
+    $('#id_auth').val('oidc').css('pointer-events', 'none').css('background', '#ccc');
 }
 
 /**
