@@ -548,8 +548,10 @@ class theme_mentor_core_renderer extends core_renderer
             // Back to the dashboard for training sheet.
             if (strpos($this->page->url, '/local/trainings/pages/training.php') !== false) {
                 $header->hasprevbutton = 1;
+                $header->suppressheaderprevstep = 1;
                 $header->prevstepurl = (new moodle_url('/'))->out();
                 $header->prevstetitle = get_string('prevstepdashboard', 'theme_mentor');
+
             }
 
             // Back to the training sheet page.
@@ -566,6 +568,7 @@ class theme_mentor_core_renderer extends core_renderer
             // Back to the library page.
             if (strpos($this->page->url, '/local/library/pages/training.php') !== false) {
                 $header->hasprevbutton = 1;
+                $header->suppressheaderprevstep = 1;
                 $header->prevstepurl = (new moodle_url('/local/library/index.php'))->out();
                 $header->prevstetitle = get_string('libraryreturn', 'theme_mentor');
             }

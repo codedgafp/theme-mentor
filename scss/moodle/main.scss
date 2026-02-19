@@ -513,6 +513,14 @@ input[type="radio"] {
   }
 }
 
+.prevstep.novisible {
+  display: none;
+}
+
+main .prevstep--top {
+  margin-bottom: 10px;
+}
+
 .prevstep {
   a {
     font-size: 14px;

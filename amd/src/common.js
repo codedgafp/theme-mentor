@@ -2,10 +2,14 @@
 define([], function () {
     return {
         //RGAA
-        moveSecondPrevstepToMain: function () {
+        moveAllPrevstepToMain: function () {
             const mainElement = document.querySelector('main');
             const prevstepElements = document.querySelectorAll('.prevstep');
             if (mainElement && prevstepElements.length > 1) {
+                const firstPrevstep = prevstepElements[0];
+                mainElement.insertBefore(firstPrevstep, mainElement.firstChild);
+                firstPrevstep.classList.remove('novisible');
+                firstPrevstep.classList.add('prevstep--top');
                 const footerLink = prevstepElements[1];
                 mainElement.appendChild(footerLink);
             }

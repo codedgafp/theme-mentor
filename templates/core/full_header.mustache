@@ -69,7 +69,7 @@
                 </div>
 
                 {{#hasprevbutton}}
-                    <div class="prevstep">
+                    <div class="prevstep {{#suppressheaderprevstep}}novisible{{/suppressheaderprevstep}}">
                         <a href="{{{prevstepurl}}}" class="fr-fi-arrow-left-line {{ prevbuttonclass }}">{{prevstetitle}}</a>
                     </div>
                 {{/hasprevbutton}}
