@@ -195,7 +195,7 @@ body.headroom--pinned {
   }
 
   .drawercontent {
-    margin-top: 18px;
+    height: calc(100% - #{$navbar-height}) !important;
   }
 }
 
