@@ -75,7 +75,19 @@ $THEME->scss = function($theme) {
     return theme_mentor_get_main_scss_content($theme);
 };
 
-$THEME->layouts = [
+$THEME->regions = [
+    'side-pre',
+    'top-block'
+];
+
+$THEME->defaultregion = 'side-pre';
+
+$THEME->layouts = [    
+    'course' => [
+        'file' => 'drawers.php',
+        'regions' => ['side-pre', 'top-block'],
+        'defaultregion' => 'side-pre',
+    ],
     'mydashboard' => [
         'file' => 'my.php',
         'regions' => ['side-pre'],

@@ -49,6 +49,7 @@ $blockshtml = $OUTPUT->blocks('side-pre');
 
 $hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 $infoblockhtml = "";
+$accm_block_html = '';
 // If is course.
 if ($PAGE->course && $PAGE->course->id !== SITEID) {
     $training = \local_mentor_core\training_api::get_training_by_course_id($PAGE->course->id);
@@ -72,8 +73,22 @@ if ($PAGE->course && $PAGE->course->id !== SITEID) {
     }
     $blockshtml = $infoblockhtml . $blockshtml;
 
+   
     // If the course is linked to a training or session.
     if ($training || $session) {
+        
+    // Find activities_completion_course_monitoring block in top-block region.
+    if ($PAGE->blocks->is_known_region(BLOCK_POS_TOP, $OUTPUT)) {
+        $topBlocks = $PAGE->blocks->get_blocks_for_region(BLOCK_POS_TOP);
+        $accm_block = current(array_filter($topBlocks, fn($block) => 
+            !empty($block->instance) && $block->instance->blockname === 'activities_completion_course_monitoring'
+        )) ?: null;
+
+        // Render block content
+        if ($accm_block != null) {
+            $accm_block_html = $accm_block->get_content()->text;
+        }
+    }
         // Open block drawer.
         $blockdraweropen = true;
 
@@ -161,6 +176,7 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'hasprevbutton' => theme_mentor_get_previous_button(),
+    'topblock' => $accm_block_html
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
