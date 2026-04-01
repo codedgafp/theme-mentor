@@ -77,11 +77,11 @@ if ($PAGE->course && $PAGE->course->id !== SITEID) {
     // If the course is linked to a training or session.
     if ($training || $session) {
         
-    // Find activities_completion_course_monitoring block in top-block region.
+    // Find completion_monitoring block in top-block region.
     if ($PAGE->blocks->is_known_region(BLOCK_POS_TOP, $OUTPUT)) {
         $topBlocks = $PAGE->blocks->get_blocks_for_region(BLOCK_POS_TOP);
         $accm_block = current(array_filter($topBlocks, fn($block) => 
-            !empty($block->instance) && $block->instance->blockname === 'activities_completion_course_monitoring'
+            !empty($block->instance) && $block->instance->blockname === 'completion_monitor'
         )) ?: null;
 
         // Render block content
