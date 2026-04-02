@@ -90,10 +90,7 @@
     max-height: 81px !important;
     height: 81px;
     padding-right: 1rem;
-
-    @media(max-width: $size-lg) {
-      margin-right: 16px;
-    }
+    margin-right:  -0.75rem !important;
 
     .logo {
       max-height: initial !important;
