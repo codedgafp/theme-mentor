@@ -1,5 +1,9 @@
 .format-tiles {
 
+  &.format-tiles-tile-open #page.drawers {
+    overflow: visible !important;
+  }
+
   .tiles {
     display: flex;
     justify-content: center !important;
