@@ -169,7 +169,8 @@ define("theme_mentor/drawers", ["exports", "core/modal_backdrop", "core/template
             }
             Aria.hide(this.drawerNode), this.drawerNode.classList.remove(CLASSES_SHOW), getBackdrop().then((backdrop => {
                 if (backdrop.hide(), isSmall()) {
-                    document.getElementById("page").style.overflow = "auto";
+                    document.getElementById("page").style.overflow = "visible";
+                    document.body.style.removeProperty('touch-action');
                 }
                 return backdrop
             })).catch();
