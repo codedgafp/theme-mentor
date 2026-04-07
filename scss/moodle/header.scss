@@ -15,7 +15,7 @@
 
   @media(max-width: 768px) {
     font-size: 0.7em;
-    padding: 0 1rem;
+    padding-right: 2px;
   }
 
   @media(max-width: 640px) {
@@ -55,8 +55,7 @@
 
     @media(max-width: $size-mobile) {
       height: inherit;
-      padding-right: 5px;
-      padding-left: 0;
+      padding-left: 0 !important;;
     }
   }
 
@@ -89,8 +88,6 @@
     align-items: center;
     max-height: 81px !important;
     height: 81px;
-    padding-right: 1rem;
-    margin-right:  -0.75rem !important;
 
     .logo {
       max-height: initial !important;
