@@ -25,10 +25,6 @@
 
 use core_h5p\core;
 
-/**#@+
- * Default name for the block top region.
- */
-define('BLOCK_POS_TOP',  'top-block');
 
 /**
  * Get the scss content of the theme
