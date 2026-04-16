@@ -57,7 +57,7 @@ if ($PAGE->course && $PAGE->course->id !== SITEID) {
     $session = \local_mentor_core\session_api::get_session_by_course_id($PAGE->course->id);
 
     $isarchivedsession = $session ? ($session->status ===  \local_mentor_core\session::STATUS_ARCHIVED) : false;
-    if($isarchivedsession){
+    if ($isarchivedsession) {
 
         $infoblockhtml = html_writer::start_tag('section', [
             'class' => 'block block_html card mb-3',
@@ -69,27 +69,30 @@ if ($PAGE->course && $PAGE->course->id !== SITEID) {
         $infoblockhtml .=  get_string('infoblockarchivedsession', 'theme_mentor');
         $infoblockhtml .= html_writer::end_tag('div');
 
-        $infoblockhtml .= html_writer::end_tag('section'); 
+        $infoblockhtml .= html_writer::end_tag('section');
         $hasblocks = true;
     }
     $blockshtml = $infoblockhtml . $blockshtml;
 
-   
+
     // If the course is linked to a training or session.
     if ($training || $session) {
-        
-    // Find completion_monitoring block in top-block region.
-    if ($PAGE->blocks->is_known_region(BLOCK_POS_TOP, $OUTPUT)) {
-        $topBlocks = $PAGE->blocks->get_blocks_for_region(BLOCK_POS_TOP);
-        $accm_block = current(array_filter($topBlocks, fn($block) => 
-            !empty($block->instance) && $block->instance->blockname === 'completion_monitor'
-        )) ?: null;
 
-        // Render block content
-        if ($accm_block != null) {
-            $accm_block_html = $accm_block->get_content()->text;
+        // Find completion_monitoring block in top-block region.
+        if (isset($CFG->blocktopregion) && $CFG->blocktopregion === BLOCK_POS_TOP && $PAGE->blocks->is_known_region($CFG->blocktopregion, $OUTPUT)) {
+            $position = $CFG->blocktopregion;
+            $topBlocks = $PAGE->blocks->get_blocks_for_region($position);
+            $accm_block = current(array_filter(
+                $topBlocks,
+                fn($block) =>
+                !empty($block->instance) && $block->instance->blockname === 'completion_monitor'
+            )) ?: null;
+
+            // Render block content
+            if ($accm_block != null) {
+                $accm_block_html = $accm_block->get_content()->text;
+            }
         }
-    }
         // Open block drawer.
         $blockdraweropen = true;
 
