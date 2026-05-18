@@ -39,6 +39,7 @@ body {
   [data-region=right-hand-drawer].drawer {
     top: 0;
     height: 100%;
+    z-index: 1031;
   }
 
   &.headroom--pinned {
