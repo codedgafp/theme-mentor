@@ -77,9 +77,10 @@
         padding-left : .75rem;
       }
 
-      &:has(.nav-link.primary_nav_ms_auto) {
+      &.primary_nav_ms_auto {
         margin-left: auto;
-      }
+    }
+
     }
   }
 
