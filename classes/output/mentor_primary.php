@@ -234,7 +234,8 @@ class mentor_primary extends \core\navigation\output\primary
                     'text' => get_string('presentation', 'theme_mentor'),
                     'isactive' => $isactive,
                     'key' => get_string('presentation', 'theme_mentor'),
-                    'classes' => ['primary_nav_ms_auto']
+                    'itemclasses' => ['primary_nav_ms_auto']
+
                 ];
             }
 
@@ -253,7 +254,7 @@ class mentor_primary extends \core\navigation\output\primary
                     'key' => get_string('contact', 'theme_mentor'),
                 ];
                 if ($presentationpageisenabled === false)
-                    $contactpageprimary = array_merge($contactpageprimary, ['classes' => ['primary_nav_ms_auto']]);
+                    $contactpageprimary = array_merge($contactpageprimary, ['itemclasses' => ['primary_nav_ms_auto']]);
 
                 $primary[] = $contactpageprimary;
             }
@@ -267,7 +268,7 @@ class mentor_primary extends \core\navigation\output\primary
             'key' => get_string('help', 'theme_mentor')
         ];
         if ($presentationpageisenabled === false && $contactpageisenabled === false)
-            $helppageprimary = array_merge($helppageprimary, ['classes' => ['primary_nav_ms_auto']]);
+            $helppageprimary = array_merge($helppageprimary, ['itemclasses' => ['primary_nav_ms_auto']]);
 
         $primary[] = $helppageprimary;
 
