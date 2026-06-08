@@ -1,5 +1,4 @@
 .format-tiles {
-
   &.format-tiles-tile-open #page.drawers {
     overflow: visible !important;
   }
@@ -139,5 +138,11 @@
         }
       }
     }
+  }
+
+  .completioncheckbox.complete {
+    background-color: $progressbar-bgcolor-completed;
+    color: #fff;
+    border-color: $progressbar-bgcolor-completed;
   }
 }
