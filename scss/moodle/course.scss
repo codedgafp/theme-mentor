@@ -262,6 +262,8 @@ body[class*="course-"] {
     div.nextsection {
       width: 45%;
       text-align: right;
+      display: flex;
+      justify-content: end;
 
       span.rarrow {
         margin-left: 0.5rem;
