@@ -35,6 +35,7 @@ $string['pluginname'] = 'Mentor';
 
 // We need to include a lang string for each block region.
 $string['region-side-pre'] = 'Left';
+$string['region-top-block'] = 'Zone supérieure du cours';
 
 $string['managemyentities'] = 'Gérer mes espaces';
 $string['managemyentity'] = 'Gérer mon espace';
