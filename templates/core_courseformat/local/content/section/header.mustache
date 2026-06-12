@@ -48,6 +48,11 @@
         </h2>
     {{/sitehome}}
     {{^sitehome}}
+        {{#displayonesection}}
+            <h2 id="sectionid-{{id}}-title" class="h3 sectionname m-auto">
+                {{{title}}}
+            </h2>
+        {{/displayonesection}}
         {{^displayonesection}}
             <div class="d-flex align-items-center position-relative">
                 <a role="button"
