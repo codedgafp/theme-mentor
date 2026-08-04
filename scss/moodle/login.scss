@@ -94,7 +94,7 @@
           }
         }
 
-        main[role="main"] {
+        .main-content-region {
           display: flex;
           flex-direction: row-reverse;
           justify-content: center;
@@ -614,7 +614,7 @@
     }
   }
 
-  main[role="main"] form {
+  .main-content-region form {
     .collapsible-actions {
       & > a {
         padding-left: 20px !important;

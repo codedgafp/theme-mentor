@@ -15,53 +15,64 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template theme_boost/login
+    @template theme_boost/maintenance
 
-    Login page template
+    Boost maintenance layout template.
+
+    Context variables required for this template:
+    * output - The core renderer for the page
 
     Example context (json):
     {
         "output": {
             "doctype": "<!DOCTYPE html>",
-            "page_title": "Login page",
+            "page_title": "Test page",
             "favicon": "favicon.ico",
-            "main_content": "<h1>Headers keep HTML validators happy</h1>"
-        }
+            "main_content": "<h1>Headings make html validators happier</h1>"
+         }
     }
 }}
-{{> theme_boost/head }}
+{{{ output.doctype }}}
+<html {{{ output.htmlattributes }}}>
+<head>
+    <title>{{{ output.page_title }}}</title>
+    <link rel="shortcut icon" href="{{{ output.favicon }}}" />
+    {{{ output.standard_head_html }}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-<body {{{ bodyattributes }}}>
+<body {{{ output.body_attributes }}}>
 {{> core/local/toast/wrapper}}
 
 <div id="page-wrapper">
 
     {{{ output.standard_top_of_body_html }}}
-    {{> theme_boost/header }}
 
-    <div id="page" class="container-fluid">
+    <div id="page" class="container pb-3">
+
         <main role="main">
+        <div class="row">
+            <div class="col-12 py-3 page-header-headings">
+                {{{ output.page_heading }}}
+            </div>
+        </div>
+
         <div id="page-content" class="row">
-            <div id="region-main-box" class="col-12">
-                <section id="region-main" class="col-12" aria-label="{{#str}}content{{/str}}">
-                    {{{ output.course_content_header }}}
-                    {{{ output.main_content }}}
-                    {{{ output.course_content_footer }}}
-                </section>
+            <div id="region-main" class="col-12">
+                {{{ output.main_content }}}
             </div>
         </div>
         </main>
+
     </div>
-
-
     {{> theme_boost/footer }}
 </div>
 
 </body>
 </html>
 {{#js}}
-    M.util.js_pending('theme_boost/loader');
-    require(['theme_boost/loader'], function() {
-    M.util.js_complete('theme_boost/loader');
-    });
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function() {
+  M.util.js_complete('theme_boost/loader');
+});
 {{/js}}

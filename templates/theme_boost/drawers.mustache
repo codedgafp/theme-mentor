@@ -63,7 +63,9 @@
             {{$id}}theme_boost-drawers-courseindex{{/id}}
             {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
             {{$drawercontent}}
-                {{{courseindex}}}
+                <nav role="navigation" aria-label="{{#str}}courseindex, core_courseformat{{/str}}">
+                    {{{courseindex}}}
+                </nav>
             {{/drawercontent}}
             {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
             {{$drawerstate}}show-drawer-left{{/drawerstate}}
@@ -92,6 +94,7 @@
     <div id="page" data-region="mainpage" data-usertour="scroller"
          class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
         <div id="topofscroll" class="main-inner">
+            <main role="main">
             <div class="drawer-toggles d-flex">
                 {{#courseindex}}
                     <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
@@ -132,7 +135,9 @@
             {{{ output.full_header }}}
             {{#secondarymoremenu}}
                 <div class="secondary-navigation d-print-none">
-                    {{> core/moremenu}}
+                    {{< core/moremenu}}
+                        {{$moremenunavlabel}}{{#str}}secondarynavigation, theme_mentor{{/str}}{{/moremenunavlabel}}
+                    {{/ core/moremenu}}
                 </div>
             {{/secondarymoremenu}}
             <div id="page-content" class="pb-3 d-print-block">
@@ -166,12 +171,13 @@
                     </section>
                 </div>
             </div>
+            {{#hasprevbutton}}
+                <div class="prevstep">
+                    <a href="{{{prevstepurl}}}" class="fr-fi-arrow-left-line {{ prevbuttonclass }}">{{prevstetitle}}</a>
+                </div>
+            {{/hasprevbutton}}
+            </main>
         </div>
-        {{#hasprevbutton}}
-            <div class="prevstep">
-                <a href="{{{prevstepurl}}}" class="fr-fi-arrow-left-line {{ prevbuttonclass }}">{{prevstetitle}}</a>
-            </div>
-        {{/hasprevbutton}}
         {{> theme_boost/footer }}
     </div>
     {{{ output.standard_after_main_region_html }}}

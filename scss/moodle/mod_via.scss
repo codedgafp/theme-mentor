@@ -1,6 +1,6 @@
 #page-mod-via-view {
   #page-content {
-    main[role="main"] {
+    .main-content-region {
       h2:first-child {
         display: none;
       }
