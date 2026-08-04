@@ -45,7 +45,7 @@
         "moremenuid": "614c104dbacfa"
     }
 }}
-<nav class="moremenu navigation observed" aria-label="Navigation principale" role="navigation">
+<nav class="moremenu navigation observed" aria-label="{{$moremenunavlabel}}{{#str}}primarynavigation, theme_mentor{{/str}}{{/moremenunavlabel}}" role="navigation">
     <ul id="moremenu-{{moremenuid}}-{{navbarstyle}}" role="{{#istablist}}tablist{{/istablist}}{{^istablist}}menubar{{/istablist}}" class="nav more-nav {{navbarstyle}}">
         {{#nodecollection}}
             {{#children}}

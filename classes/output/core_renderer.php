@@ -648,18 +648,9 @@ class theme_mentor_core_renderer extends core_renderer
      * @return string HTML fragment.
      */
     public function main_content() {
-        // This is here because it is the only place we can inject the "main" role over the entire main content area
-        // without requiring all theme's to manually do it, and without creating yet another thing people need to
-        // remember in the theme.
-        // This is an unfortunate hack. DO NO EVER add anything more here.
-        // DO NOT add classes.
-        // DO NOT add an id.
-
-        $url = $this->page->url;
-        $balise = strpos($url, '/my/') ? "div" : "main";
-
-        $main_content = "<$balise role='main'>" . $this->unique_main_content_token . "</$balise>";
-        return $main_content;
+        // The single <main> landmark is emitted by the layout templates so it wraps the page heading;
+        // emitting another main element here would nest landmarks.
+        return "<div class=\"main-content-region\">" . $this->unique_main_content_token . "</div>";
     }
 
     /**

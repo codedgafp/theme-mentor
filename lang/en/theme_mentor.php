@@ -56,6 +56,8 @@ $string['prevstep'] = 'Étape précédente';
 $string['prevstepcatalog'] = 'Retour à l\'offre de formation';
 $string['prevstepdashboard'] = 'Retour à mes formations';
 $string['exittomod'] = 'Sortir de l\'activité';
+$string['primarynavigation'] = 'Navigation principale';
+$string['secondarynavigation'] = 'Navigation secondaire';
 
 // Mentor theme.
 $string['mentorgeneralsettings'] = 'Paramètres thème Mentor';
