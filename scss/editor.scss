@@ -1,0 +1,17 @@
+@import "../../boost/scss/editor";
+@import "../../boost/scss/fontawesome";
+
+@import "moodle/variables";
+@import "moodle/fonts";
+@import "moodle/main";
+@import "moodle/editor_templates";
+
+body.mce-content-body {
+  a {
+    color: $maincolor;
+  }
+
+  .btn a {
+    color: inherit;
+  }
+}
