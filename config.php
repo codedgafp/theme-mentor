@@ -45,6 +45,8 @@ default text editor and "Atto" does not need this setting so we won't provide an
 as the previous setting - listing a file in the /styles/ folder. */
 $THEME->editor_sheets = [];
 
+$THEME->editor_scss = ['editor'];
+
 /* This is a critical setting. We want to inherit from theme_boost because it provides a great starting point for SCSS bootstrap4
 themes. We could add more than one parent here to inherit from multiple parents, and if we did they would be processed in
 order of importance (later themes overriding earlier ones). Things we will inherit from the parent theme include
