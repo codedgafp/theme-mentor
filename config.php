@@ -102,6 +102,8 @@ $THEME->layouts = [
 $THEME->javascripts_footer = [
     'accordion',
     'card',
+    'snippets_common',
+    'snippets_editor',
     'courseedit',
     'coursemenuicon',
     'csp',
