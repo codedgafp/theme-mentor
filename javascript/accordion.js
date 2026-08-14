@@ -57,35 +57,8 @@ $(document).ready(function () {
     });
 
     $(window).bind('load', function () {
-        attoEditorObserver();
         newAccordionObserver();
     });
-
-    function attoEditorObserver() {
-        let attoEditors = $('.editor_atto_content');
-        if (attoEditors.length === 0) return;
-
-        const observer = new MutationObserver(mutationsList => {
-            for (const mutation of mutationsList) {
-                if (mutation.type === 'childList') {
-                    $(mutation.addedNodes).each(function () {
-                        const target = $(this);
-                        if (target.hasClass('mentor-accordion')) initAccordion(target);
-                    });
-                }
-            }
-        });
-
-        const config = { childList: true, subtree: true };
-
-        attoEditors.each(function () {
-            observer.observe(this, config);
-        });
-
-        attoEditors.find(".mentor-accordion").each(function () {
-            initAccordion($(this));
-        });
-    }
 
     function newAccordionObserver() {
         const observer = new MutationObserver(mutations => {
@@ -101,40 +74,8 @@ $(document).ready(function () {
         observer.observe($("body")[0], config);
     }
 
-    function initAccordion(accordion) {
-        accordion.find("div.card").each(function () {
-            setAccordionLiAriaControl($(this));
-        });
-
-        accordion.find(".remove-collapse").on('click', function () {
-            const card = $(this).closest('div.card');
-            const snippet = $(this).closest('div.mentor-accordion');
-            snippet.find('div.card').length > 1 ? card.remove() : snippet.remove();
-        });
-
-        accordion.find(".add-collapse").on('click', function () {
-            const card = $(this).closest('div.card');
-            const $newCard = card.clone(true);
-            setAccordionLiAriaControl($newCard);
-            card.after($newCard);
-        });
-    }
-
-    function setAccordionLiAriaControl(card) {
-        let collapseUid = generateUID();
-        let buttonUid = generateUID();
-        card.find("div.collapse-content")
-            .attr('id', collapseUid)
-            .attr('aria-labelledby', buttonUid);
-        card.find("a.card-header")
-            .attr('id', buttonUid)
-            .attr('aria-controls', collapseUid);
-    }
-
-
-    function generateUID() {
-        return Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
-    }
+    // The add/remove controls and the aria wiring of the editable accordions live in
+    // snippets_common.js / snippets_editor.js, shared with TinyMCE.
 
     function set_collapse_mobile_size(index, element) {
         if ($(element).parents('.editor_atto_content').length == false) {
