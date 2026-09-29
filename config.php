@@ -104,6 +104,7 @@ $THEME->javascripts_footer = [
     'card',
     'snippets_common',
     'snippets_editor',
+    'snippet_button',
     'courseedit',
     'coursemenuicon',
     'csp',
