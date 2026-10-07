@@ -27,6 +27,8 @@ require('../../../config.php');
 require_once($CFG->libdir . '/authlib.php');
 require_once($CFG->dirroot . '/theme/mentor/forms/verify_email_form.php');
 
+use core\url;
+
 if (isloggedin() && !isguestuser()) {
     // Prevent signing up when already logged in.
     redirect(new moodle_url('/'), get_string('cannotsignup', 'error', fullname($USER)));
@@ -62,8 +64,8 @@ if ($mform->is_cancelled()) {
     echo '<p id="verifywarningsinfo"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> ' .
          get_string('verifywarningsinfo', 'theme_mentor', $userprofileurl->out()) .
          '</p>';
-    $ensavoirplusurl = (new moodle_url('/local/staticpage/view.php', ['page' => 'ensavoirplus']))->out(false);
-    $donneespersonnellesurl = (new moodle_url('/local/staticpage/view.php', ['page' => 'donneespersonnelles']))->out(false);
+    $ensavoirplusurl = (new url("$CFG->wwwroot/fr/en-savoir-plus"))->out(false);
+    $donneespersonnellesurl = (new url("$CFG->wwwroot/fr/donnees-personnelles"))->out(false);
     echo '<p id="rgpd-mentions">' .
          get_string('rgpdmentions', 'theme_mentor',
                  ['ensavoirplusurl' => $ensavoirplusurl, 'donneespersonnellesurl' => $donneespersonnellesurl]) .

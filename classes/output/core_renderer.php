@@ -664,7 +664,7 @@ class theme_mentor_core_renderer extends core_renderer
         if (($PAGE->url && strpos($PAGE->url->get_path(), 'login/index.php') 
             ||$PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/index.php') 
             || $PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/pages/training.php') 
-            || $PAGE->url && strpos($PAGE->url->get_path(), '/local/staticpage/view.php?page=ensavoirplus')) && !isloggedin() || isguestuser()) {
+            || $PAGE->url && strpos($PAGE->url->get_path(), '/fr/en-savoir-plus')) && !isloggedin() || isguestuser()) {
             
             $openli = '<li class="nav-item">';
             $closeli = '</li>';
@@ -677,13 +677,13 @@ class theme_mentor_core_renderer extends core_renderer
 
             $abouticone = '<img src="' . $PAGE->theme->image_url('icon_mentor', 'theme_mentor') . '" alt="" class="icon"> ';
             $aboutlabel = get_string('about', 'theme_mentor');
-            $aboutActivClass = ($PAGE->url && strpos($PAGE->url->get_path(), '/local/staticpage/view.php?page=ensavoirplus')) ? 'active-catalog-link' : '';
-            $aboutlink = $openli . '<a href="/local/staticpage/view.php?page=ensavoirplus" class="nav-link custom-static-head-links '. $aboutActivClass .'">'. $abouticone . ' ' . $aboutlabel . ' </a>' . $closeli;
+            $aboutActivClass = ($PAGE->url && strpos($PAGE->url->get_path(), '/fr/en-savoir-plus')) ? 'active-catalog-link' : '';
+            $aboutlink = $openli . '<a href="/fr/en-savoir-plus" class="nav-link custom-static-head-links '. $aboutActivClass .'">'. $abouticone . ' ' . $aboutlabel . ' </a>' . $closeli;
             $links .= $aboutlink;  
             if (($PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/index.php') 
                 || $PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/pages/training.php')
                 || $PAGE->url && strpos($PAGE->url->get_path(), 'local/catalog/pages/training.php')
-                || $PAGE->url && strpos($PAGE->url->get_path(), '/local/staticpage/view.php?page=ensavoirplus')) && !isloggedin() || isguestuser()) {
+                || $PAGE->url && strpos($PAGE->url->get_path(), '/fr/en-savoir-plus')) && !isloggedin() || isguestuser()) {
             
                 $loginicone = '<i class="fa fa-user-circle" aria-hidden="true"></i>';
                 $loginlabel = get_string('loginheader', 'theme_mentor');

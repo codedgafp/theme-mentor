@@ -41,7 +41,7 @@ if ($ADMIN->fulltree) {
         'theme_mentor/about',
         get_string('about', 'theme_mentor'),
         get_string('about_desc', 'theme_mentor'),
-        $CFG->wwwroot . '/local/staticpage/view.php?page=ensavoirplus',
+        $CFG->wwwroot . '/fr/en-savoir-plus',
         PARAM_URL
     );
 
@@ -50,7 +50,7 @@ if ($ADMIN->fulltree) {
         'theme_mentor/legalnotice',
         get_string('legalnotice', 'theme_mentor'),
         get_string('legalnotice_desc', 'theme_mentor'),
-        $CFG->wwwroot . '/local/staticpage/view.php?page=mentionslegales',
+        $CFG->wwwroot . '/fr/mentions-legales',
         PARAM_URL
     );
 
@@ -60,7 +60,7 @@ if ($ADMIN->fulltree) {
         'theme_mentor/nonloggedcontact',
         get_string('nonloggedcontact', 'theme_mentor'),
         get_string('nonloggedcontact_desc', 'theme_mentor'),
-        $CFG->wwwroot . '/local/staticpage/view.php?page=contact',
+        $CFG->wwwroot . '/fr/contact',
         PARAM_URL
     );
 
@@ -69,7 +69,7 @@ if ($ADMIN->fulltree) {
         'theme_mentor/faq',
         get_string('faq', 'theme_mentor'),
         get_string('faq_desc', 'theme_mentor'),
-        $CFG->wwwroot . '/local/staticpage/view.php?page=faq',
+        $CFG->wwwroot . '/fr/aide',
         PARAM_URL
     );
 
@@ -105,7 +105,7 @@ if ($ADMIN->fulltree) {
         'theme_mentor/sitemap',
         get_string('sitemap', 'theme_mentor'),
         get_string('sitemap_desc', 'theme_mentor'),
-        $CFG->wwwroot . '/local/staticpage/view.php?page=plandusite',
+        $CFG->wwwroot . '/fr/plan-du-site',
         PARAM_URL
     );
 
@@ -123,7 +123,7 @@ if ($ADMIN->fulltree) {
         'theme_mentor/personaldata',
         get_string('personaldata', 'theme_mentor'),
         get_string('personaldata_desc', 'theme_mentor'),
-        $CFG->wwwroot . '/local/staticpage/view.php?page=donneespersonnelles',
+        $CFG->wwwroot . '/fr/donnees-personnelles',
         PARAM_URL
     );
 
