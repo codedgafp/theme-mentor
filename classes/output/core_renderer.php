@@ -771,4 +771,18 @@ class theme_mentor_core_renderer extends core_renderer
         $contextheader = new \context_header($heading, $headinglevel, $imagedata, $userbuttons, $prefix);
         return $this->render($contextheader);
     }
+
+    /**
+     * Generates a redirect URL depending on whether the user is logged in or not.
+     * 
+     * @return string
+     */
+    public function logoredirecturl(): string
+    {
+        global $CFG;
+
+        return isloggedin() && !isguestuser()
+                ? "$CFG->wwwroot/fr/sso/portail" // if logged in
+                : "$CFG->wwwroot/fr"; // if NOT logged in
+    }
 }
