@@ -40,7 +40,13 @@
     background-image: url("[[pix:theme|login]]");
     background-size: cover;
     background-repeat: no-repeat;
-    margin-top: 0!important;
+    margin-top: 0 !important;
+
+    & > main {
+      display: flex;
+      flex: 1 0 auto;
+      flex-direction: column;
+    }
 
     #region-main-box {
       display: flex;

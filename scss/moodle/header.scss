@@ -603,6 +603,13 @@
     .nav-link {
       padding-right: .75rem;
       padding-left: .75rem;
+
+      &:focus,
+      &:focus-visible {
+        box-shadow: none;
+        outline: $input-btn-focus-width solid $input-btn-focus-color !important;
+        outline-offset: -$input-btn-focus-width;
+      }
     }
 
     &.primary_nav_ms_auto {
