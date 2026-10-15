@@ -37,21 +37,21 @@
 {{/ core_courseformat/local/content/section/bulkselect }}
 {{/sectionbulk}}
 {{#headerdisplaymultipage}}
-    <h3 id="sectionid-{{id}}-title" class="h4 sectionname">
+    <h3 id="sectionid-{{id}}-title" class="h4 sectionname m-auto">
         {{{title}}}
     </h3>
 {{/headerdisplaymultipage}}
 {{^headerdisplaymultipage}}
     {{#sitehome}}
-        <h2 id="sectionid-{{id}}-title" class="h3 sectionname">
+        <h2 id="sectionid-{{id}}-title" class="h3 sectionname m-auto">
             {{{title}}}
         </h2>
     {{/sitehome}}
     {{^sitehome}}
         {{#displayonesection}}
-            <h2 id="sectionid-{{id}}-title" class="h3 sectionname m-auto">
+            <h3 id="sectionid-{{id}}-title" class="h4 sectionname m-auto">
                 {{{title}}}
-            </h2>
+            </h3>
         {{/displayonesection}}
         {{^displayonesection}}
             <div class="d-flex align-items-center position-relative">
