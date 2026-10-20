@@ -29,6 +29,8 @@ require_once($CFG->dirroot . '/course/lib.php');
 require_once($CFG->dirroot . '/theme/mentor/classes/output/mentor_primary.php');
 require_once($CFG->dirroot . '/blocks/completion_monitor/lib.php');
 
+global $DB;
+
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
 
@@ -159,6 +161,19 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
+$course = get_course($PAGE->course->id);
+$displaydrawer = false;
+
+$coursecontext = context_course::instance($course->id);
+$courseblockinstances = $DB->get_records('block_instances', [
+    'parentcontextid' => $coursecontext->id,
+]);
+$summaryblock = array_filter($courseblockinstances, fn ($instance) => $instance->blockname == 'summary');
+
+if (empty($summaryblock) && $course->format == 'topics') {
+    $displaydrawer = true;
+}
+
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
@@ -180,7 +195,8 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'hasprevbutton' => theme_mentor_get_previous_button(),
-    'topblock' => $accm_block_html
+    'topblock' => $accm_block_html,
+    'displaydrawer' => $displaydrawer
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
