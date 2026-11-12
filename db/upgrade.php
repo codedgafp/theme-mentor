@@ -30,6 +30,8 @@
  * @return boolean
  */
 function xmldb_theme_mentor_upgrade($oldversion) {
+    global $CFG, $DB;
+
     if ($oldversion < 2023063000) {
         // Update config.
         set_config(
@@ -38,6 +40,32 @@ function xmldb_theme_mentor_upgrade($oldversion) {
             '<a href= "https://www.etalab.gouv.fr/" target="_blank"> licence etalab - 2.0</a >',
             'theme_mentor'
         );
+    }
+
+    if ($oldversion < 2026111000) {
+        $staticpagelinks = [
+            'about' => ['ensavoirplus', '/fr/en-savoir-plus'],
+            'legalnotice' => ['mentionslegales', '/fr/mentions-legales'],
+            'nonloggedcontact' => ['contact', '/fr/contact'],
+            'faq' => ['faq', '/fr/aide'],
+            'sitemap' => ['plandusite', '/fr/plan-du-site'],
+            'accessibility' => ['accessibilite', '/fr/accessibilite-partiellement-conforme'],
+            'personaldata' => ['donneespersonnelles', '/fr/donnees-personnelles'],
+        ];
+
+        foreach ($staticpagelinks as $name => [$page, $path]) {
+            $stored = $DB->get_field('config_plugins', 'value', ['plugin' => 'theme_mentor', 'name' => $name]);
+
+            if ($stored === false || $stored === '') {
+                continue;
+            }
+
+            if (strpos($stored, '/local/staticpage/view.php?page=' . $page) === false) {
+                continue;
+            }
+
+            set_config($name, $CFG->wwwroot . $path, 'theme_mentor');
+        }
     }
 
     return true;
